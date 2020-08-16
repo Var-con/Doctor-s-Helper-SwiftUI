@@ -10,25 +10,28 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isActive = false
+    @State var secondButtonActive = false
     var body: some View {
         NavigationView {
             ZStack{
-            Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
-
-            VStack {
-                NavigationLink(destination: CalculatingView(), isActive: $isActive) {
-                    Text("Рассчитать больничный лист")
-                }.frame(width: 250, height: 100)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.blue, lineWidth: 3))
+                Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
                 
-                NavigationLink(destination: StorageListView(), isActive: $isActive) {
-                    Text("Сохраненные больничные листы")
-             }.padding(.top, 20)
+                VStack {
+                    NavigationLink(destination: CalculatingView(), isActive: $isActive) {
+                        Text("Рассчитать больничный лист")
+                    }.frame(width: 250, height: 100)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.blue, lineWidth: 3))
+                    
+                    NavigationLink(destination: StorageListView(), isActive: $secondButtonActive) {
+                        Text("Сохраненные больничные листы")
+                        Image(systemName: "folder")
+                        
+                    }.padding(.top, 20)
+                }
+                .navigationBarTitle("Doctor's Helper")
             }
-            .navigationBarTitle("Doctor's Helper")
-        }
         }
     }
 }

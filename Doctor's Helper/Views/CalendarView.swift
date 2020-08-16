@@ -30,11 +30,17 @@ struct CalendarView: View {
                 }) {
                     HStack {
                         if showCalendar {
-                            Text("Скрыть календарь")
-                                .transition(.scale)
+                            HStack {
+                                Image(systemName: "calendar.circle.fill")
+                                Text("Скрыть календарь")
+                                    .transition(.scale)
+                            }
                         } else {
-                            Text("Показать календарь")
-                                .transition(.scale)
+                            HStack {
+                                Image(systemName: "calendar.circle")
+                                Text("Показать календарь")
+                                    .transition(.scale)
+                            }
                         }
                         Image(systemName: "chevron.up.square")
                             .scaleEffect(showCalendar ? 1.5 : 1)
@@ -45,9 +51,10 @@ struct CalendarView: View {
                 
                 if showCalendar {
                     DatePicker("", selection: $date, displayedComponents: .date)
-                        .frame(width: 200, height: 150)
+                        .frame(width: 200, height: 130)
                         .scaleEffect(0.9)
                         .padding(.trailing, 20)
+                        .padding(.top, 20)
                     
                 }
             }
