@@ -17,6 +17,7 @@ struct CalendarView: View {
         VStack {
             VStack {
                 HStack {
+                    Spacer()
                     Text("\(text)")
                         .frame(width: 200)
                         .font(.body).scaledToFill().multilineTextAlignment(.center)
@@ -51,9 +52,8 @@ struct CalendarView: View {
                 
                 if showCalendar {
                     DatePicker("", selection: $date, displayedComponents: .date)
-                        .frame(width: 200, height: 130)
-                        .scaleEffect(0.9)
-                        .padding(.trailing, 20)
+                        .frame(width: 200, height: 80)
+                        .scaleEffect(0.7)
                         .padding(.top, 20)
                     
                 }

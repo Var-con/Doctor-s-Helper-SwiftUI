@@ -20,6 +20,7 @@ struct CalculatingView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
+                VStack {
                 HStack {
                     CalendarView(date: $startValue, text: "Начало нетрудоспособности")
                     Spacer()
@@ -30,35 +31,25 @@ struct CalculatingView: View {
                     Spacer()
                 }
                 .padding(.top, 40)
-                Spacer()
+                }
                 if showTextField {
                     HStack {
-                        TextField("Введите номер больничного листа...", text: $listNumber)
+                        TextField("Введите номер больничного", text: $listNumber)
+                            .padding(.leading, 20)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: {
-                            let targetValue = DateInterval(start: self.startValue, end: self.endValue)
-                            let resultDays = lround(targetValue.duration / 86400) + 1
-                            
-                            let listOfUnworking = self.savingListData(
-                                from: self.startValue,
-                                endDay: self.endValue,
-                                totalDays: resultDays,
-                                listNumber: self.listNumber
-                            )
-                            StorageManager.shared.saveList(with: listOfUnworking)
-                            self.restoreToDefault()
                             self.savingAlert.toggle()
+                            self.savingToStorage()
                         }) {
                             Text("Сохранить")
                         }.alert(isPresented: $savingAlert) {
-                            Alert(title: Text("Лист нетрудоспособности успешно сохранен"))
+                            Alert(title: Text("Больничный успешно сохранен"))
                         }
-                    }.frame(height: 100)
-                } else { Spacer().frame(height: 100) }
-                Spacer()
+                    }.padding(.top, 20)
+                        .animation(Animation.default)
+                }
                 Text(resultText)
                     .padding(.bottom, 20)
-                    .padding(.top, 20)
                     .font(.headline)
                 Button(action: { self.getDays() }) {
                     Text("Рассчитать!")
@@ -70,7 +61,7 @@ struct CalculatingView: View {
                         dismissButton: .default(Text("Ok"))
                     )
                 }
-                .frame(width: 200, height: 70)
+                .frame(width: 200, height: 50)
                 .background(Color.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -92,7 +83,8 @@ struct CalculatingView: View {
                 }.padding(.top, 20)
                 Spacer()
             }
-            .padding()
+            .transition(.opacity)
+            .animation(.default)
         }
         .background(Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6))
         .navigationBarTitle("Рассчитайте больничный", displayMode: .inline)
@@ -121,13 +113,28 @@ extension CalculatingView {
         resultText = ""
         startValue = .init()
         endValue = .init()
-        self.showTextField = false
+        showTextField = false
+        savingAlert = false
     }
     
     private func savingListData(from startDay: Date, endDay: Date, totalDays: Int, listNumber: String) -> ListOfUnworking {
-        return ListOfUnworking(id: Int(listNumber)!, listNumber: listNumber,
+        return ListOfUnworking(id: Int(listNumber), listNumber: listNumber,
                                totalDays: totalDays,
                                startDate: startDay,
                                endDate: endDay)
+    }
+    
+    
+    private func savingToStorage() {
+        let targetValue = DateInterval(start: startValue, end: endValue)
+        let resultDays = lround(targetValue.duration / 86400) + 1
+        
+        let listOfUnworking = savingListData(
+            from: startValue,
+            endDay: endValue,
+            totalDays: resultDays,
+            listNumber: listNumber
+        )
+        StorageManager.shared.saveList(with: listOfUnworking)
     }
 }

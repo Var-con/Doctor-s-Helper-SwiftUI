@@ -15,9 +15,11 @@ struct StorageListView: View {
             ForEach(lists) { list in
                 ZStack {
                     if list.endDate > Date.init() {
-                    Color.green.brightness(0.6).blur(radius: 20)
+                        Color.green.brightness(0.6).blur(radius: 20)
+                    } else if list.endDate == Date.init() {
+                        Color.yellow.brightness(0.6).blur(radius: 20)
                     } else {
-                    Color.red.brightness(0.6).blur(radius: 20)
+                        Color.red.brightness(0.6).blur(radius: 20)
                     }
                     VStack {
                         Text("Номер листа: \(list.listNumber)")
@@ -38,7 +40,7 @@ struct StorageListView: View {
                 }
             }
         }
-
+            
         .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
     }
 }

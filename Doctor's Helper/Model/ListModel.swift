@@ -9,7 +9,7 @@
 import Foundation
 
 struct ListOfUnworking: Codable, Identifiable {
-    var id: Int
+    var id: Int?
     var listNumber: String
     var totalDays: Int
     var startDate: Date
