@@ -15,48 +15,39 @@ struct CalendarView: View {
     var text: String
     var body: some View {
         VStack {
-            VStack {
+            Button(action: {
+                withAnimation {
+                    self.showCalendar.toggle()
+                }
+            }) {
                 HStack {
-                    Spacer()
-                    Text("\(text)")
-                        .frame(width: 200)
-                        .font(.body).scaledToFill().multilineTextAlignment(.center)
-                    Text("\(DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none))")
-                    Spacer()
-                }
-                Button(action: {
-                    withAnimation {
-                        self.showCalendar.toggle()
-                    }
-                }) {
-                    HStack {
-                        if showCalendar {
-                            HStack {
-                                Image(systemName: "calendar.circle.fill")
-                                Text("Скрыть календарь")
-                                    .transition(.scale)
-                            }
-                        } else {
-                            HStack {
-                                Image(systemName: "calendar.circle")
-                                Text("Показать календарь")
-                                    .transition(.scale)
-                            }
+                    if showCalendar {
+                        HStack {
+                            Image(systemName: "calendar.circle.fill")
+                            Text(text)
+                                .transition(.scale)
                         }
-                        Image(systemName: "chevron.up.square")
-                            .scaleEffect(showCalendar ? 1.5 : 1)
-                            .rotationEffect(.degrees(showCalendar ? 0 : 180))
-                            .animation(.default)
+                    } else {
+                        HStack {
+                            Image(systemName: "calendar.circle")
+                            Text(text)
+                                .transition(.scale)
+                            Text("\(DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none))")
+                        }.frame(height: 100)
                     }
+                    Image(systemName: "chevron.up.square")
+                        .scaleEffect(showCalendar ? 1.5 : 1)
+                        .rotationEffect(.degrees(showCalendar ? 0 : 180))
+                        .animation(.default)
                 }
+            }
+            
+            if showCalendar {
+                DatePicker("", selection: $date, displayedComponents: .date)
+                    .frame(width: 200, height: 80)
+                    .padding(.top, 40)
+                    .scaleEffect(0.7)
                 
-                if showCalendar {
-                    DatePicker("", selection: $date, displayedComponents: .date)
-                        .frame(width: 200, height: 80)
-                        .scaleEffect(0.7)
-                        .padding(.top, 20)
-                    
-                }
             }
         }
     }

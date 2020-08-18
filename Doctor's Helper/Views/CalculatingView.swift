@@ -18,19 +18,16 @@ struct CalculatingView: View {
     @State var savingAlert = false
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: true) {
+        ZStack {
+            Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
             VStack {
                 VStack {
-                HStack {
-                    CalendarView(date: $startValue, text: "Начало нетрудоспособности")
-                    Spacer()
-                }
-                .padding(.top, 20)
-                HStack {
-                    CalendarView(date: $endValue, text: "Окончание нетрудоспособности")
-                    Spacer()
-                }
-                .padding(.top, 40)
+                    CalendarView(date: $startValue,
+                                 text: "Начало нетрудоспособности")
+                        .padding(.top, 20)
+                    CalendarView(date: $endValue,
+                                 text: "Окончание нетрудоспособности")
+                        .padding(.top, 20)
                 }
                 if showTextField {
                     HStack {
@@ -49,8 +46,8 @@ struct CalculatingView: View {
                         .animation(Animation.default)
                 }
                 Text(resultText)
-                    .padding(.bottom, 20)
                     .font(.headline)
+                    .padding()
                 Button(action: { self.getDays() }) {
                     Text("Рассчитать!")
                 }
@@ -83,11 +80,9 @@ struct CalculatingView: View {
                 }.padding(.top, 20)
                 Spacer()
             }
-            .transition(.opacity)
             .animation(.default)
+            .navigationBarTitle("Рассчитайте больничный", displayMode: .inline)
         }
-        .background(Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6))
-        .navigationBarTitle("Рассчитайте больничный", displayMode: .inline)
     }
 }
 
@@ -117,8 +112,12 @@ extension CalculatingView {
         savingAlert = false
     }
     
-    private func savingListData(from startDay: Date, endDay: Date, totalDays: Int, listNumber: String) -> ListOfUnworking {
-        return ListOfUnworking(id: Int(listNumber), listNumber: listNumber,
+    private func savingListData(from startDay: Date,
+                                endDay: Date,
+                                totalDays: Int,
+                                listNumber: String) -> ListOfUnworking {
+        return ListOfUnworking(id: Int(listNumber),
+                               listNumber: listNumber,
                                totalDays: totalDays,
                                startDate: startDay,
                                endDate: endDay)

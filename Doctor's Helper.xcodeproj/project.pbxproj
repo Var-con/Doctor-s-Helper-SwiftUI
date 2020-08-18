@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B379946224EC3D5600D71C64 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B379946124EC3D5600D71C64 /* TabBar.swift */; };
 		B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */; };
 		B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB24124E2D2A50000B566 /* SceneDelegate.swift */; };
 		B3AFB24424E2D2A50000B566 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB24324E2D2A50000B566 /* ContentView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B379946124EC3D5600D71C64 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		B3AFB23C24E2D2A50000B566 /* Doctor's Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doctor's Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3AFB24124E2D2A50000B566 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B3AFB24324E2D2A50000B566 /* ContentView.swift */,
+				B379946124EC3D5600D71C64 /* TabBar.swift */,
 				B3AFB25324E2D31D0000B566 /* CalculatingView.swift */,
 				B3AFB25724E31C900000B566 /* StorageListView.swift */,
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B379946224EC3D5600D71C64 /* TabBar.swift in Sources */,
 				B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */,
 				B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */,
 				B3AFB25424E2D31D0000B566 /* CalculatingView.swift in Sources */,
