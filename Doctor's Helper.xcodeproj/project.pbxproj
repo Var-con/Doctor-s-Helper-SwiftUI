@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B310110924EE728F00186136 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310110824EE728F00186136 /* Lists.swift */; };
 		B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62124ED41840010A9F5 /* ContinueList.swift */; };
-		B3A8F62424ED4C100010A9F5 /* RowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62324ED4C100010A9F5 /* RowList.swift */; };
 		B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */; };
 		B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */; };
 		B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB24124E2D2A50000B566 /* SceneDelegate.swift */; };
@@ -24,12 +23,12 @@
 		B3AFB25F24E328600000B566 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB25E24E328600000B566 /* StorageService.swift */; };
 		B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */; };
 		B3CA2C0324EDA9E500831A92 /* TextFieldSaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */; };
+		B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3424EE9465007B11E1 /* RowList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B310110824EE728F00186136 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
 		B3A8F62124ED41840010A9F5 /* ContinueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueList.swift; sourceTree = "<group>"; };
-		B3A8F62324ED4C100010A9F5 /* RowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowList.swift; sourceTree = "<group>"; };
 		B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatingService.swift; sourceTree = "<group>"; };
 		B3AFB23C24E2D2A50000B566 /* Doctor's Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doctor's Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		B3AFB25E24E328600000B566 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateButtonView.swift; sourceTree = "<group>"; };
 		B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSaveButtonView.swift; sourceTree = "<group>"; };
+		B3E2DE3424EE9465007B11E1 /* RowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 				B3AFB25324E2D31D0000B566 /* CalculatingView.swift */,
 				B3AFB25724E31C900000B566 /* StorageListView.swift */,
 				B3A8F62124ED41840010A9F5 /* ContinueList.swift */,
-				B3A8F62324ED4C100010A9F5 /* RowList.swift */,
+				B3E2DE3424EE9465007B11E1 /* RowList.swift */,
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
 				B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */,
 				B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */,
@@ -221,11 +221,11 @@
 			files = (
 				B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */,
 				B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */,
-				B3A8F62424ED4C100010A9F5 /* RowList.swift in Sources */,
 				B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */,
 				B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */,
 				B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */,
 				B3AFB25424E2D31D0000B566 /* CalculatingView.swift in Sources */,
+				B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */,
 				B3AFB24424E2D2A50000B566 /* ContentView.swift in Sources */,
 				B3AFB25A24E31CB70000B566 /* ListModel.swift in Sources */,
 				B310110924EE728F00186136 /* Lists.swift in Sources */,

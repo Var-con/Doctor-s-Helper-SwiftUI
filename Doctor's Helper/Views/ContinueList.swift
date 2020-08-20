@@ -13,7 +13,7 @@ var list: ListOfUnworking
     
     @Binding var showModal: Bool
     @State var date: Date
-    @State var endDate: Date
+    @State private var endDate: Date = Date()
     @State private var listNumber = ""
     @State private var savingAlert = false
     @State private var showAlert = false
@@ -50,8 +50,7 @@ struct ContinueList_Previews: PreviewProvider {
                                   startDate: Date.init(),
                                   endDate: Date.init()),
             showModal: .constant(true),
-            date: Date.init(),
-            endDate: Date.init())
+            date: Date.init())
     }
 }
 
