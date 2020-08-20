@@ -24,6 +24,7 @@
 		B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */; };
 		B3CA2C0324EDA9E500831A92 /* TextFieldSaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */; };
 		B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3424EE9465007B11E1 /* RowList.swift */; };
+		B3E2DE3724EEB551007B11E1 /* DeatailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateButtonView.swift; sourceTree = "<group>"; };
 		B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSaveButtonView.swift; sourceTree = "<group>"; };
 		B3E2DE3424EE9465007B11E1 /* RowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowList.swift; sourceTree = "<group>"; };
+		B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatailInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				B3AFB24324E2D2A50000B566 /* ContentView.swift */,
 				B3AFB25324E2D31D0000B566 /* CalculatingView.swift */,
 				B3AFB25724E31C900000B566 /* StorageListView.swift */,
+				B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */,
 				B3A8F62124ED41840010A9F5 /* ContinueList.swift */,
 				B3E2DE3424EE9465007B11E1 /* RowList.swift */,
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
@@ -221,6 +224,7 @@
 			files = (
 				B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */,
 				B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */,
+				B3E2DE3724EEB551007B11E1 /* DeatailInfoView.swift in Sources */,
 				B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */,
 				B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */,
 				B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */,

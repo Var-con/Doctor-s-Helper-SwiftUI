@@ -10,41 +10,59 @@ import SwiftUI
 
 struct RowList: View {
     var list: ListOfUnworking
-    @State private var isPresented = false
+    @State var isPresented = false
     @ObservedObject private var lists = ListsOfUnworking()
     
     var body: some View {
-        Button(action: { self.isPresented.toggle() }) {
+        NavigationLink(destination: DeatailInfoView(list: list, isActive: $isPresented), isActive: $isPresented) {
             ZStack {
                 if list.endDate > Date() {
                     Color.green.blur(radius: 10).brightness(0.6)
-                } else {
+                } else if list.endDate < Date() {
                     Color.red.blur(radius: 10).brightness(0.6)
                 }
-            VStack {
-                Text("Создать продолжение")
-                Text("Лист нетрудоспособности: №\(list.listNumber)")
-                HStack {
-                    Text("Дата начала нетрудоспособности: ")
-                    Spacer()
-                    Text(DateFormatter.localizedString(from: list.startDate, dateStyle: .medium, timeStyle: .none))
-                }
-                HStack {
-                    Text("Дата окончания нетрудоспособности: ")
-                    Spacer()
-                    Text(DateFormatter.localizedString(from: list.endDate, dateStyle: .medium, timeStyle: .none))
-                }
-                ForEach(lists.fetchListWithPrevioslyNumber()) { nextList in
-                    if nextList.previoslyListNumber == self.list.listNumber {
-                        Text("\(nextList.previoslyListNumber!)")
-                        
+                VStack {
+                    HStack {
+                        Text("Лист нетрудоспособности: № ")
+                        Text("\(list.listNumber)")
+                            .fontWeight(.bold)
+                        Spacer()
                     }
-                    
+                    .frame(height: 50)
+                    HStack {
+                        Text("Дата окончания нетрудоспособности: ")
+                        Spacer()
+                        Text(DateFormatter.localizedString(from: list.endDate, dateStyle: .medium, timeStyle: .none))
+                            .fontWeight(.bold)
+                    }
+                    Text("Всего дней: \(self.list.totalDays)")
+                    Spacer()
+                    ForEach(lists.fetchListWithPrevioslyNumber()) { nextList in
+                        if nextList.previoslyListNumber == self.list.listNumber {
+                            VStack{
+                                HStack{
+                                    Text("Лист продолжения: ")
+                                    Text("\(nextList.listNumber)").fontWeight(.bold)
+                                    Spacer()
+                                }
+                                Spacer()
+                                HStack {
+                                    Text("Дата окончания нетрудоспособности: ")
+                                    Spacer()
+                                    Text(DateFormatter.localizedString(from: nextList.endDate, dateStyle: .medium, timeStyle: .none))
+                                        .fontWeight(.bold)
+                                }
+                                Spacer()
+                                Text("Общее количество дней: \(self.list.totalDays + nextList.totalDays)").fontWeight(.bold)
+                                Spacer()
+                            }
+                        }
+                    }
+                    Text("Больше информации.")
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
                 }
             }
-            }
-        }.sheet(isPresented: $isPresented) {
-            ContinueList(list: self.list, showModal: self.$isPresented, date: self.list.endDate)
         }
     }
 }
@@ -55,6 +73,6 @@ struct RowList_Previews: PreviewProvider {
                                       listNumber: "12",
                                       totalDays: 1,
                                       startDate: Date(),
-                                      endDate: Date()))
+                                      endDate: Date())).frame(height: 150)
     }
 }

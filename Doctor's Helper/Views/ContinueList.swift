@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct ContinueList: View {
-var list: ListOfUnworking
-    
+
+    var list: ListOfUnworking
     @Binding var showModal: Bool
     @State var date: Date
     @State private var endDate: Date = Date()
@@ -31,7 +31,8 @@ var list: ListOfUnworking
                                         continueList: true,
                                         startValue: $date,
                                         endValue: $endDate,
-                                        list: list)
+                                        list: list,
+                                        exitToPreviousPage: $showModal)
                 
             }
             Button("Close") {

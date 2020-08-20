@@ -16,6 +16,7 @@ struct TextFieldSaveButtonView: View {
     @Binding var startValue: Date
     @Binding var endValue: Date
     @State var list: ListOfUnworking?
+    @Binding var exitToPreviousPage: Bool
     
     var body: some View {
         HStack {
@@ -31,6 +32,7 @@ struct TextFieldSaveButtonView: View {
             }
                     Button(action: {
                         
+                        self.exitToPreviousPage.toggle()
                         self.save()
                     }) {
                         Text("Сохранить")
@@ -44,7 +46,7 @@ struct TextFieldSaveButtonView: View {
     
     struct TextFieldSaveButtonView_Previews: PreviewProvider {
         static var previews: some View {
-            TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()))
+            TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false))
         }
     }
     

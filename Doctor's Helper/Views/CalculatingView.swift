@@ -16,6 +16,7 @@ struct CalculatingView: View {
     @State private var showTextField = false
     @State private var listNumber = ""
     @State private var savingAlert = false
+    @State var exitToPreviousPage: Bool
     
     var body: some View {
         ZStack {
@@ -24,11 +25,18 @@ struct CalculatingView: View {
                 VStack {
                     CalendarView(date: $startValue,
                                  text: "Начало нетрудоспособности")
-                        .padding(.top, 20)
+                        .padding(.top, 5)
                     CalendarView(date: $endValue,
                                  text: "Окончание нетрудоспособности")
                         .padding(.top, 20)
                 }
+//                .frame(width: 300)
+                .padding()
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .overlay(RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.blue, lineWidth: 3))
+//                .padding(.top, 20)
                 if showTextField {
                     TextFieldSaveButtonView(
                         listNumber: listNumber,
@@ -36,7 +44,8 @@ struct CalculatingView: View {
                         showAlert: showAlert,
                         continueList: false,
                         startValue: $startValue,
-                        endValue: $endValue)
+                        endValue: $endValue,
+                        exitToPreviousPage: $exitToPreviousPage)
                 }
                 VStack {
                     Text(resultText)
@@ -69,7 +78,7 @@ struct CalculatingView: View {
 
 struct CalculatingView_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatingView(startValue: Date.init(), endValue: Date.init())
+        CalculatingView(startValue: Date.init(), endValue: Date.init(), exitToPreviousPage: false)
     }
 }
 

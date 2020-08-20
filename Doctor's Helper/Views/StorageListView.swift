@@ -14,8 +14,8 @@ struct StorageListView: View {
     
     var body: some View {
         List ((lists.fetchListWithoutPrevioslyNumber()), id: \.listNumber) { list in
-                RowList(list: list)
-        }
+            RowList(list: list).font(.system(size: 14))
+            }
         .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
     }
 }

@@ -28,4 +28,16 @@ class StorageManager {
         return lists
     }
 
+    func deleteList(at index: Int) {
+        var lists = fetchLists()
+        lists.remove(at: index)
+        guard let data = try? JSONEncoder().encode(lists) else { return }
+        userDefaults.setValue(data, forKey: arrayKey)
+        return
+    }
+    
+    func saveArrayOfLists(with lists: [ListOfUnworking]) {
+         guard let data = try? JSONEncoder().encode(lists) else { return }
+         userDefaults.setValue(data, forKeyPath: arrayKey)
+     }
 }

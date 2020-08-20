@@ -25,6 +25,7 @@ struct CalendarView: View {
                         HStack {
                             Image(systemName: "calendar.circle.fill")
                             Text(text)
+                                .fontWeight(.light)
                                 .transition(.scale)
                         }
                     } else {

@@ -31,12 +31,14 @@ struct CalculateButtonView: View {
                 dismissButton: .default(Text("Ok"))
             )
         }
-        .animation(.linear)
         .frame(width: 200, height: 50)
-        .background(Color.white)
+        .foregroundColor(.white)
+        .background(Color.blue)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .animation(.linear)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.blue, lineWidth: 3)
+                .stroke(Color.green, lineWidth: 3)
         )
     }
 }

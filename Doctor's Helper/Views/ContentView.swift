@@ -18,14 +18,15 @@ struct ContentView: View {
                 VStack {
                     Image("mainView").opacity(0.6)
                     Spacer()
-                    NavigationLink(destination: CalculatingView()) {
+                    NavigationLink(destination: CalculatingView( exitToPreviousPage: false)) {
                         Text("Рассчитать больничный лист").fontWeight(.bold)
                     }
                     .frame(width: 270, height: 100)
-                    .background(Color.white)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .overlay(RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.blue, lineWidth: 3))
+                    .stroke(Color.green, lineWidth: 3))
                     
                     NavigationLink(destination: StorageListView()) {
                         Text("Сохраненные больничные листы")
