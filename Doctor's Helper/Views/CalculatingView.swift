@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct CalculatingView: View {
-    @State var startValue: Date = .init()
-    @State var endValue: Date = .init()
-    @State var resultText: String = ""
-    @State var showAlert = false
-    @State var showTextField = false
-    @State var listNumber = ""
-    @State var savingAlert = false
+    @State var startValue: Date = Date.init()
+    @State var endValue: Date = Date.init()
+    @State private var resultText: String = ""
+    @State private var showAlert = false
+    @State private var showTextField = false
+    @State private var listNumber = ""
+    @State private var savingAlert = false
     
     var body: some View {
         ZStack {
@@ -30,57 +30,38 @@ struct CalculatingView: View {
                         .padding(.top, 20)
                 }
                 if showTextField {
-                    HStack {
-                        TextField("Введите номер больничного", text: $listNumber)
-                            .padding(.leading, 20)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button(action: {
-                            self.savingAlert.toggle()
-                            self.savingToStorage()
-                        }) {
-                            Text("Сохранить")
-                        }.alert(isPresented: $savingAlert) {
-                            Alert(title: Text("Больничный успешно сохранен"))
-                        }
-                    }.padding(.top, 20)
-                        .animation(Animation.default)
+                    TextFieldSaveButtonView(
+                        listNumber: listNumber,
+                        savingAlert: savingAlert,
+                        showAlert: showAlert,
+                        continueList: false,
+                        startValue: $startValue,
+                        endValue: $endValue)
                 }
-                Text(resultText)
-                    .font(.headline)
-                    .padding()
-                Button(action: { self.getDays() }) {
-                    Text("Рассчитать!")
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Ошибка ввода!"),
-                        message: Text("День окончания листа нетрудоспособности установлен раньше дня начала листа нетрудоспособности! Введите правильную дату."),
-                        dismissButton: .default(Text("Ok"))
-                    )
-                }
-                .frame(width: 200, height: 50)
-                .background(Color.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 3)
-                )
-                HStack {
-                    Button(action: {
-                        self.showTextField.toggle()
-                    }) {
-                        Text("Сохранить лист нетрудоспособности").font(.footnote)
-                    }
-                    .frame(width: 150)
+                VStack {
+                    Text(resultText)
+                        .font(.headline)
+                        .padding()
+                    CalculateButtonView(startDate: $startValue, endDate: $endValue, resultText: $resultText)
                     
-                    Button(action: {
-                        self.restoreToDefault()
-                    }) {
-                        Text("Очистить")
-                    }.frame(width: 100)
-                }.padding(.top, 20)
-                Spacer()
+                    HStack {
+                        Button(action: {
+                            self.showTextField.toggle()
+                        }) {
+                            Text("Сохранить лист нетрудоспособности").font(.footnote)
+                        }
+                        .frame(width: 150)
+                        
+                        Button(action: {
+                            self.restoreToDefault()
+                        }) {
+                            Text("Очистить")
+                        }.frame(width: 100)
+                    }.padding(.top, 20)
+                    Spacer()
+                }
+                .animation(.default)
             }
-            .animation(.default)
             .navigationBarTitle("Рассчитайте больничный", displayMode: .inline)
         }
     }
@@ -88,52 +69,17 @@ struct CalculatingView: View {
 
 struct CalculatingView_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatingView()
+        CalculatingView(startValue: Date.init(), endValue: Date.init())
     }
 }
 
 extension CalculatingView {
-    private func getDays() {
-        let compareResult = self.startValue.compare(self.endValue)
-        guard compareResult.rawValue <= 0 else {
-            self.showAlert = true
-            return
-        }
-        let targetValue = DateInterval(start: self.startValue, end: self.endValue)
-        let resultDays = lround(targetValue.duration / 86400) + 1
-        self.resultText = "\(resultDays) суток нетрудоспособности."
-    }
-    
+
     private func restoreToDefault() {
         resultText = ""
         startValue = .init()
         endValue = .init()
         showTextField = false
         savingAlert = false
-    }
-    
-    private func savingListData(from startDay: Date,
-                                endDay: Date,
-                                totalDays: Int,
-                                listNumber: String) -> ListOfUnworking {
-        return ListOfUnworking(id: Int(listNumber),
-                               listNumber: listNumber,
-                               totalDays: totalDays,
-                               startDate: startDay,
-                               endDate: endDay)
-    }
-    
-    
-    private func savingToStorage() {
-        let targetValue = DateInterval(start: startValue, end: endValue)
-        let resultDays = lround(targetValue.duration / 86400) + 1
-        
-        let listOfUnworking = savingListData(
-            from: startValue,
-            endDay: endValue,
-            totalDays: resultDays,
-            listNumber: listNumber
-        )
-        StorageManager.shared.saveList(with: listOfUnworking)
     }
 }

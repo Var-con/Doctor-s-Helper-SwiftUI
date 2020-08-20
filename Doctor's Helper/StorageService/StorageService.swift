@@ -27,6 +27,5 @@ class StorageManager {
         
         return lists
     }
-    
-    
+
 }

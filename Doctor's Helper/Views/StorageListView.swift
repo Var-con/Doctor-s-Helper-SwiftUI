@@ -9,38 +9,13 @@
 import SwiftUI
 
 struct StorageListView: View {
-    var lists = StorageManager.shared.fetchLists()
+
+    @ObservedObject private var lists = ListsOfUnworking()
+    
     var body: some View {
-        List {
-            ForEach(lists) { list in
-                ZStack {
-                    if list.endDate > Date.init() {
-                        Color.green.brightness(0.6).blur(radius: 20)
-                    } else if list.endDate == Date.init() {
-                        Color.yellow.brightness(0.6).blur(radius: 20)
-                    } else {
-                        Color.red.brightness(0.6).blur(radius: 20)
-                    }
-                    VStack {
-                        Text("Номер листа: \(list.listNumber)")
-                        Spacer()
-                        HStack {
-                            Text("Начало :")
-                            Spacer()
-                            Text(DateFormatter.localizedString(from: list.startDate, dateStyle: .medium, timeStyle: .none))
-                        }
-                        HStack {
-                            Text("Окончание :")
-                            Spacer()
-                            Text(DateFormatter.localizedString(from: list.endDate, dateStyle: .medium, timeStyle: .none))
-                        }
-                        Text("Всего дней: \(list.totalDays)")
-                        Spacer()
-                    }
-                }
-            }
+        List ((lists.fetchListWithoutPrevioslyNumber()), id: \.listNumber) { list in
+                RowList(list: list)
         }
-            
         .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
     }
 }

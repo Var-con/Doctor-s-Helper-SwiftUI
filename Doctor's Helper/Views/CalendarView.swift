@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @Binding var date: Date
-    @State var showCalendar: Bool = false
+    @State private var showCalendar: Bool = false
     var text: String
     var body: some View {
         VStack {
@@ -43,10 +43,10 @@ struct CalendarView: View {
             }
             
             if showCalendar {
-                DatePicker("", selection: $date, displayedComponents: .date)
-                    .frame(width: 200, height: 80)
-                    .padding(.top, 40)
-                    .scaleEffect(0.7)
+                    DatePicker("", selection: $date, displayedComponents: .date)
+                        .frame(width: 200, height: 80)
+                        .padding(.top, 40)
+                        .scaleEffect(0.7)
                 
             }
         }

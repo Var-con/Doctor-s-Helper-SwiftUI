@@ -9,26 +9,35 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isActive = false
-    @State var secondButtonActive = false
+
     var body: some View {
         NavigationView {
-            ZStack{
+            ZStack {
                 Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
                 
                 VStack {
-                    NavigationLink(destination: CalculatingView(), isActive: $isActive) {
-                        Text("Рассчитать больничный лист")
-                    }.frame(width: 250, height: 100)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.blue, lineWidth: 3))
+                    Image("mainView").opacity(0.6)
+                    Spacer()
+                    NavigationLink(destination: CalculatingView()) {
+                        Text("Рассчитать больничный лист").fontWeight(.bold)
+                    }
+                    .frame(width: 270, height: 100)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .overlay(RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.blue, lineWidth: 3))
                     
-                    NavigationLink(destination: StorageListView(), isActive: $secondButtonActive) {
+                    NavigationLink(destination: StorageListView()) {
                         Text("Сохраненные больничные листы")
                         Image(systemName: "folder")
-                        
-                    }.padding(.top, 20)
+                    }
+                    .frame(width: 200, height: 70)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .overlay(RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.blue, lineWidth: 3))
+                    .padding(.top, 20)
+                    Spacer()
                 }
                 .navigationBarTitle("Doctor's Helper")
             }

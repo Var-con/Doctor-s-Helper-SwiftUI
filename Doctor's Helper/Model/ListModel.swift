@@ -14,6 +14,7 @@ struct ListOfUnworking: Codable, Identifiable {
     var totalDays: Int
     var startDate: Date
     var endDate: Date
+    var previoslyListNumber: String?
     
     
 }

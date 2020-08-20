@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B379946224EC3D5600D71C64 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B379946124EC3D5600D71C64 /* TabBar.swift */; };
+		B310110924EE728F00186136 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310110824EE728F00186136 /* Lists.swift */; };
+		B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62124ED41840010A9F5 /* ContinueList.swift */; };
+		B3A8F62424ED4C100010A9F5 /* RowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62324ED4C100010A9F5 /* RowList.swift */; };
+		B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */; };
 		B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */; };
 		B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB24124E2D2A50000B566 /* SceneDelegate.swift */; };
 		B3AFB24424E2D2A50000B566 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB24324E2D2A50000B566 /* ContentView.swift */; };
@@ -19,10 +22,15 @@
 		B3AFB25824E31C900000B566 /* StorageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB25724E31C900000B566 /* StorageListView.swift */; };
 		B3AFB25A24E31CB70000B566 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB25924E31CB70000B566 /* ListModel.swift */; };
 		B3AFB25F24E328600000B566 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB25E24E328600000B566 /* StorageService.swift */; };
+		B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */; };
+		B3CA2C0324EDA9E500831A92 /* TextFieldSaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B379946124EC3D5600D71C64 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		B310110824EE728F00186136 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
+		B3A8F62124ED41840010A9F5 /* ContinueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueList.swift; sourceTree = "<group>"; };
+		B3A8F62324ED4C100010A9F5 /* RowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowList.swift; sourceTree = "<group>"; };
+		B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatingService.swift; sourceTree = "<group>"; };
 		B3AFB23C24E2D2A50000B566 /* Doctor's Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doctor's Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3AFB24124E2D2A50000B566 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +44,8 @@
 		B3AFB25724E31C900000B566 /* StorageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageListView.swift; sourceTree = "<group>"; };
 		B3AFB25924E31CB70000B566 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		B3AFB25E24E328600000B566 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateButtonView.swift; sourceTree = "<group>"; };
+		B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSaveButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B310110A24EE8BC000186136 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B310110824EE728F00186136 /* Lists.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		B3AFB23324E2D2A50000B566 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B3AFB26024E328670000B566 /* StorageService */,
+				B310110A24EE8BC000186136 /* Entity */,
 				B3AFB25B24E324160000B566 /* Views */,
 				B3AFB25C24E324270000B566 /* Model */,
 				B3AFB25D24E324320000B566 /* SupportingFiles */,
@@ -90,10 +109,13 @@
 			isa = PBXGroup;
 			children = (
 				B3AFB24324E2D2A50000B566 /* ContentView.swift */,
-				B379946124EC3D5600D71C64 /* TabBar.swift */,
 				B3AFB25324E2D31D0000B566 /* CalculatingView.swift */,
 				B3AFB25724E31C900000B566 /* StorageListView.swift */,
+				B3A8F62124ED41840010A9F5 /* ContinueList.swift */,
+				B3A8F62324ED4C100010A9F5 /* RowList.swift */,
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
+				B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */,
+				B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				B3AFB25E24E328600000B566 /* StorageService.swift */,
+				B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */,
 			);
 			path = StorageService;
 			sourceTree = "<group>";
@@ -196,15 +219,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B379946224EC3D5600D71C64 /* TabBar.swift in Sources */,
+				B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */,
+				B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */,
+				B3A8F62424ED4C100010A9F5 /* RowList.swift in Sources */,
 				B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */,
+				B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */,
 				B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */,
 				B3AFB25424E2D31D0000B566 /* CalculatingView.swift in Sources */,
 				B3AFB24424E2D2A50000B566 /* ContentView.swift in Sources */,
 				B3AFB25A24E31CB70000B566 /* ListModel.swift in Sources */,
+				B310110924EE728F00186136 /* Lists.swift in Sources */,
 				B3AFB25F24E328600000B566 /* StorageService.swift in Sources */,
 				B3AFB25824E31C900000B566 /* StorageListView.swift in Sources */,
 				B3AFB25624E2E8C40000B566 /* CalendarView.swift in Sources */,
+				B3CA2C0324EDA9E500831A92 /* TextFieldSaveButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
