@@ -15,6 +15,12 @@ struct RowList: View {
     
     var body: some View {
         Button(action: { self.isPresented.toggle() }) {
+            ZStack {
+                if list.endDate > Date() {
+                    Color.green.blur(radius: 10).brightness(0.6)
+                } else {
+                    Color.red.blur(radius: 10).brightness(0.6)
+                }
             VStack {
                 Text("Создать продолжение")
                 Text("Лист нетрудоспособности: №\(list.listNumber)")
@@ -35,6 +41,7 @@ struct RowList: View {
                     }
                     
                 }
+            }
             }
         }.sheet(isPresented: $isPresented) {
             ContinueList(list: self.list, showModal: self.$isPresented, date: self.list.endDate)
