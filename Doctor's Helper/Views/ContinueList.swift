@@ -18,6 +18,8 @@ struct ContinueList: View {
     @State private var savingAlert = false
     @State private var showAlert = false
     var body: some View {
+        ZStack {
+            Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
         VStack {
             VStack {
                 Text("Продолжение листа нетрудоспособности №\(list.listNumber)")
@@ -35,9 +37,14 @@ struct ContinueList: View {
                                         exitToPreviousPage: $showModal)
                 
             }
+            .padding()
+            .modifier(SectionModifier())
+            .padding(.horizontal, 10)
+            
             Button("Close") {
                 self.showModal = false
             }
+        }
         }
     }
 }

@@ -23,6 +23,7 @@ struct CalculateButtonView: View {
                 self.resultText = "\(resultDays) сутки(-ок) нетрудоспособности."
         }) {
             Text("Рассчитать!")
+                .fontWeight(.bold)
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -33,13 +34,8 @@ struct CalculateButtonView: View {
         }
         .frame(width: 200, height: 50)
         .foregroundColor(.white)
-        .background(Color.blue)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
         .animation(.linear)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.green, lineWidth: 3)
-        )
+    .modifier(CommonBlueButtonModifier())
     }
 }
 

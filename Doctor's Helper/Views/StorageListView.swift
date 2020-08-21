@@ -9,20 +9,33 @@
 import SwiftUI
 
 struct StorageListView: View {
-
+    
     @ObservedObject private var lists = ListsOfUnworking()
+    @State var listsForTable: [ListOfUnworking] = []
+    @State var popover = false
     
     var body: some View {
-        List ((lists.fetchListWithoutPrevioslyNumber()), id: \.listNumber) { list in
-            RowList(list: list)
+            List (listsForTable, id: \.listNumber) { list in
+                RowList(list: list)
+                if self.listsForTable.isEmpty {
+                    Text("Вы еще не добавляли своих больничных листов.")
+                }
+                }
+            
+    
+            .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
+                .onAppear {
+                    self.listsForTable = self.lists.fetchListWithoutPrevioslyNumber()
+                    if self.listsForTable.isEmpty {
+                        self.popover.toggle()
+                    }
             }
-        .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
+        }
     }
-}
-
-struct StorageListView_Previews: PreviewProvider {
-    static var previews: some View {
-        StorageListView()
-        
-    }
+    
+    struct StorageListView_Previews: PreviewProvider {
+        static var previews: some View {
+            StorageListView()
+            
+        }
 }

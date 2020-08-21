@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ListOfUnworking: Codable, Identifiable {
+struct ListOfUnworking: Codable, Identifiable, Equatable {
     var id: Int?
     var listNumber: String
     var totalDays: Int

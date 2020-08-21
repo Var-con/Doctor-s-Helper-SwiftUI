@@ -19,14 +19,12 @@ struct ContentView: View {
                     Image("mainView").opacity(0.6)
                     Spacer()
                     NavigationLink(destination: CalculatingView( exitToPreviousPage: false)) {
-                        Text("Рассчитать больничный лист").fontWeight(.bold)
+                        Text("Рассчитать больничный лист")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
                     }
                     .frame(width: 270, height: 100)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .overlay(RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.green, lineWidth: 3))
+                    .modifier(CommonBlueButtonModifier())
                     
                     NavigationLink(destination: StorageListView()) {
                         Text("Сохраненные больничные листы")

@@ -11,9 +11,13 @@ import SwiftUI
 struct DeatailInfoView: View {
     
     var list: ListOfUnworking
+    
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     @State private var isPresented = false
     @ObservedObject private var lists = ListsOfUnworking()
     @Binding var isActive: Bool
+    
+    @State var showAskingOfDeleteAlert = false
     
     var body: some View {
         ScrollView {
@@ -28,37 +32,40 @@ struct DeatailInfoView: View {
                     HStack {
                         Text("Дата начала нетрудоспособности: ")
                         Spacer()
-                        Text(DateFormatter.localizedString(from: list.startDate, dateStyle: .medium, timeStyle: .none))
+                        Text(DateFormatter.localizedString(from: list.startDate,
+                                                           dateStyle: .medium,
+                                                           timeStyle: .none))
                             .fontWeight(.bold)
                     }
                     HStack {
                         Text("Дата окончания нетрудоспособности: ")
                         Spacer()
-                        Text(DateFormatter.localizedString(from: list.endDate, dateStyle: .medium, timeStyle: .none))
+                        Text(DateFormatter.localizedString(from: list.endDate,
+                                                           dateStyle: .medium,
+                                                           timeStyle: .none))
                             .fontWeight(.bold)
                     }
                     HStack {
                         Spacer()
                         Button( action: {
-                            self.deleteList(list: self.list)
-                            self.isActive = false
+                            self.showAskingOfDeleteAlert.toggle()
                         }) {
                             Text("Удалить").fontWeight(.bold)
                         }
                         .frame(width: 100, height: 30)
-                        .background(Color.init(red: 1, green: 0, blue: 0))
-                        .foregroundColor(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .overlay(RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.blue, lineWidth: 2))
+                        .modifier(DeleteButtonModifier())
+                    }
+                    .alert(isPresented: self.$showAskingOfDeleteAlert) {
+                        Alert(title: Text("Вы точно хотите удалить л/н?"),
+                              primaryButton: Alert.Button.destructive(Text("Да"), action: {
+                                self.deleteList(list: self.list)}),
+                              secondaryButton: Alert.Button.cancel())
                     }
                 }
                 .padding()
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .overlay(RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.blue, lineWidth: 3))
+.modifier(SectionModifier())
                 .padding(.top, 20)
+                
                 Spacer()
                 VStack {
                     ForEach(lists.fetchListWithPrevioslyNumber()) { nextList in
@@ -72,37 +79,40 @@ struct DeatailInfoView: View {
                                     HStack {
                                         Text("Дата начала нетрудоспособности: ")
                                         Spacer()
-                                        Text(DateFormatter.localizedString(from: nextList.startDate, dateStyle: .medium, timeStyle: .none))
+                                        Text(DateFormatter.localizedString(from: nextList.startDate,
+                                                                           dateStyle: .medium,
+                                                                           timeStyle: .none))
                                             .fontWeight(.bold)
                                     }
                                     HStack {
                                         Text("Дата окончания нетрудоспособности: ")
                                         Spacer()
-                                        Text(DateFormatter.localizedString(from: nextList.endDate, dateStyle: .medium, timeStyle: .none))
+                                        Text(DateFormatter.localizedString(from: nextList.endDate,
+                                                                           dateStyle: .medium,
+                                                                           timeStyle: .none))
                                             .fontWeight(.bold)
                                     }
                                     Text("Всего дней: \(self.list.totalDays + nextList.totalDays)")
                                     HStack {
                                         Spacer()
                                         Button( action: {
-                                            self.deleteList(list: nextList)
-                                            self.isActive = false
+                                            self.showAskingOfDeleteAlert.toggle()
                                         }) {
                                             Text("Удалить").fontWeight(.bold)
                                         }
                                         .frame(width: 100, height: 30)
-                                        .background(Color.init(red: 1, green: 0, blue: 0))
-                                        .foregroundColor(Color.white)
-                                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                                        .overlay(RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.blue, lineWidth: 2))
+                                        .modifier(DeleteButtonModifier())
+                                        .alert(isPresented: self.$showAskingOfDeleteAlert) {
+                                            Alert(title: Text("Вы точно хотите удалить л/н?"),
+                                                  primaryButton: Alert.Button.destructive(Text("Да"), action: {
+                                                    self.deleteList(list: nextList)
+                                                  }),
+                                                  secondaryButton: Alert.Button.cancel())
+                                        }
                                     }
                                 }
                                 .padding()
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .overlay(RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.blue, lineWidth: 3))
+                            .modifier(SectionModifier())
                                 .padding(.top, 20)
                             }
                         }
@@ -117,10 +127,7 @@ struct DeatailInfoView: View {
                     ContinueList(list: self.list, showModal: self.$isPresented, date: self.list.endDate)
                 }
                 .frame(width: 200, height: 70)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .overlay(RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.green, lineWidth: 3))
+            .modifier(CommonBlueButtonModifier())
                 .padding(.top, 20)
                 Spacer()
             }
@@ -133,21 +140,40 @@ struct DeatailInfoView: View {
 
 struct DeatailInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        DeatailInfoView(list: ListOfUnworking(id: 12, listNumber: "12", totalDays: 2, startDate: Date(), endDate: Date()), isActive: .constant(false))
+        DeatailInfoView(list: ListOfUnworking(id: 12,
+                                              listNumber: "12",
+                                              totalDays: 2,
+                                              startDate: Date(),
+                                              endDate: Date()),
+                        isActive: .constant(false))
     }
 }
 
 
 extension DeatailInfoView {
+    
     func deleteList(list: ListOfUnworking) {
         var listsArray = lists.fetchLists()
         for (index, listOfUnwork) in listsArray.enumerated() {
-            if listOfUnwork.listNumber == list.listNumber {
-                if index < listsArray.count {
-                listsArray.remove(at: index)
+            if let previosListNumber = listOfUnwork.previoslyListNumber {
+                if previosListNumber == list.listNumber,
+                    index < listsArray.count {
+                    listsArray.remove(at: index)
+                    appDelegate?.notificationCente.removePendingNotificationRequests(withIdentifiers: ["Local Notification \(listOfUnwork.listNumber)"])
+                }
+            }
+            for (index, listOfUnwork) in listsArray.enumerated() {
+                if listOfUnwork.listNumber == list.listNumber,
+                    index < listsArray.count {
+                    listsArray.remove(at: index)
+                    appDelegate?.notificationCente.removePendingNotificationRequests(withIdentifiers: ["Local Notification \(list.listNumber)"])
                 }
             }
         }
         StorageManager.shared.saveArrayOfLists(with: listsArray)
+        if self.list.listNumber == list.listNumber {
+            isActive.toggle()
+        }
+        
     }
 }

@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct TextFieldSaveButtonView: View {
+    
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     @State var listNumber = ""
     @State var savingAlert = false
     @State var showAlert = false
@@ -30,48 +32,52 @@ struct TextFieldSaveButtonView: View {
                         dismissButton: .default(Text("Ok"))
                     )
             }
-                    Button(action: {
-                        
-                        self.exitToPreviousPage.toggle()
-                        self.save()
-                    }) {
-                        Text("Сохранить")
-                    }.alert(isPresented: $savingAlert) {
-                        Alert(title: Text("Больничный успешно сохранен"))
-                    }
+            Button(action: {
+                
+                self.save()
+            }) {
+                Text("Сохранить")
+            }.alert(isPresented: $savingAlert) {
+                Alert(title: Text("Сохранено"),
+                      message: Text("Больничный успешно сохранен"),
+                      dismissButton: .default(Text("Ok"),
+                                              action: {
+                    self.exitToPreviousPage.toggle()
+                }))
             }
+        }
         .padding(.all, 10)
-                .animation(.default)
-        }
+        .animation(.default)
     }
-    
-    struct TextFieldSaveButtonView_Previews: PreviewProvider {
-        static var previews: some View {
-            TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false))
-        }
+}
+
+struct TextFieldSaveButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false))
     }
-    
-    extension TextFieldSaveButtonView {
-        private func save() {
-            let resultDays = CalculatingService
-                .shared
-                .getDays(from: self.startValue, to: self.endValue)
-            if resultDays == 0 {
-                self.showAlert.toggle()
-                return
-            } else {
-                var list = CalculatingService
-                    .shared
-                    .savingToStorage(
-                        listNumber: self.listNumber,
-                        startDate: self.startValue,
-                        endDate: self.endValue
-                )
-                if self.continueList == true {
-                    list.previoslyListNumber = self.list?.listNumber
-                }
-                StorageManager.shared.saveList(with: list)
-                self.savingAlert.toggle()
-            }
+}
+
+extension TextFieldSaveButtonView {
+    private func save() {
+        let resultDays = CalculatingService
+            .shared
+            .getDays(from: self.startValue, to: self.endValue)
+        guard resultDays > 0 else {
+            self.showAlert.toggle()
+            return
         }
+        var list = CalculatingService
+            .shared
+            .savingToStorage(
+                listNumber: self.listNumber,
+                startDate: self.startValue,
+                endDate: self.endValue
+        )
+        if self.continueList {
+            list.previoslyListNumber = self.list?.listNumber
+        }
+        appDelegate?.scheduleNotification(with: list)
+        StorageManager.shared.saveList(with: list)
+        self.savingAlert.toggle()
+    }
 }

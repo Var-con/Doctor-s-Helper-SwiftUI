@@ -11,23 +11,22 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     let notificationCente = UNUserNotificationCenter.current()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         requestAutorezation()
-        scheduleNotification()
         notificationCente.delegate = self
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-
+        
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
     
@@ -46,36 +45,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func scheduleNotification() {
+    func scheduleNotification(with list: ListOfUnworking) {
         
         let content = UNMutableNotificationContent()
         
         content.sound = UNNotificationSound.default
         content.badge = 1
+        content.title = "Не забудьте продлить л/н №\(list.listNumber)"
+        let date = list.endDate
+        var triggerDate = Calendar.current.dateComponents(in: .current, from: date)
+        triggerDate.hour = 10
+        triggerDate.minute = 30
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
-        let lists = ListsOfUnworking().fetchLists()
-        for (index, list) in lists.enumerated() {
-            content.title = "Не забудьте продлить л/н №\(list.listNumber)"
-            let date = list.endDate
-            let triggerDate = Calendar.current.dateComponents(in: .current, from: date)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-            
-            let identifier = "Local Notification \(index)"
-            let request = UNNotificationRequest(identifier: identifier,
-                                                content: content,
-                                                trigger: trigger)
-            
-            notificationCente.add(request) { (error) in
-                if let error = error {
-                    print("Error \(error.localizedDescription)")
-                }
+        let identifier = "Local Notification \(list.listNumber)"
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content,
+                                            trigger: trigger)
+        
+        notificationCente.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
             }
         }
-        
     }
-
-
+    
 }
+
+
+
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
@@ -85,6 +83,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         completionHandler([.alert, .sound])
     }
-
+    
 }
 

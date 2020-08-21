@@ -32,10 +32,7 @@ struct CalculatingView: View {
                         .padding(.top, 10)
                 }
                 .padding()
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .overlay(RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.blue, lineWidth: 3))
+                .modifier(SectionModifier())
                 Spacer()
                 if showTextField {
                     TextFieldSaveButtonView(
