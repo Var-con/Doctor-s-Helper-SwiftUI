@@ -20,7 +20,7 @@ struct CalculateButtonView: View {
                 return
             }
             let resultDays = CalculatingService.shared.getDays(from: self.startDate, to: self.endDate)
-                self.resultText = "\(resultDays) суток нетрудоспособности."
+                self.resultText = "\(resultDays) сутки(-ок) нетрудоспособности."
         }) {
             Text("Рассчитать!")
         }

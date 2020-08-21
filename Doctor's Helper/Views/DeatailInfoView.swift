@@ -84,7 +84,10 @@ struct DeatailInfoView: View {
                                     Text("Всего дней: \(self.list.totalDays + nextList.totalDays)")
                                     HStack {
                                         Spacer()
-                                        Button( action: { self.deleteList(list: nextList) }) {
+                                        Button( action: {
+                                            self.deleteList(list: nextList)
+                                            self.isActive = false
+                                        }) {
                                             Text("Удалить").fontWeight(.bold)
                                         }
                                         .frame(width: 100, height: 30)
@@ -123,8 +126,8 @@ struct DeatailInfoView: View {
             }
                 
             .padding()
-            .background(Color.green.blur(radius: 10).brightness(0.6))
         }
+        .background(Color.green.blur(radius: 10).brightness(0.6))
     }
 }
 

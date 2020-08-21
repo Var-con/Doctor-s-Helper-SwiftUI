@@ -39,7 +39,8 @@ struct TextFieldSaveButtonView: View {
                     }.alert(isPresented: $savingAlert) {
                         Alert(title: Text("Больничный успешно сохранен"))
                     }
-            }.padding(.top, 20)
+            }
+        .padding(.all, 10)
                 .animation(.default)
         }
     }

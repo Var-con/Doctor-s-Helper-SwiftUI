@@ -22,21 +22,21 @@ struct CalculatingView: View {
         ZStack {
             Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
             VStack {
+                Spacer()
                 VStack {
                     CalendarView(date: $startValue,
                                  text: "Начало нетрудоспособности")
                         .padding(.top, 5)
                     CalendarView(date: $endValue,
                                  text: "Окончание нетрудоспособности")
-                        .padding(.top, 20)
+                        .padding(.top, 10)
                 }
-//                .frame(width: 300)
                 .padding()
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .overlay(RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.blue, lineWidth: 3))
-//                .padding(.top, 20)
+                Spacer()
                 if showTextField {
                     TextFieldSaveButtonView(
                         listNumber: listNumber,
@@ -46,11 +46,13 @@ struct CalculatingView: View {
                         startValue: $startValue,
                         endValue: $endValue,
                         exitToPreviousPage: $exitToPreviousPage)
+                } else {
+                    Spacer().frame(height: 34)
                 }
                 VStack {
                     Text(resultText)
                         .font(.headline)
-                        .padding()
+                        .padding(.all, 10)
                     CalculateButtonView(startDate: $startValue, endDate: $endValue, resultText: $resultText)
                     
                     HStack {
@@ -59,15 +61,15 @@ struct CalculatingView: View {
                         }) {
                             Text("Сохранить лист нетрудоспособности").font(.footnote)
                         }
-                        .frame(width: 150)
+                        .frame(width: 170, height: 50)
                         
                         Button(action: {
                             self.restoreToDefault()
                         }) {
                             Text("Очистить")
                         }.frame(width: 100)
-                    }.padding(.top, 20)
-                    Spacer()
+                    }.padding(.top, 10)
+                    Spacer().frame(height: 20)
                 }
                 .animation(.default)
             }

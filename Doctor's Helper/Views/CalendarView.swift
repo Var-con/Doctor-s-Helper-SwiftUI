@@ -33,8 +33,10 @@ struct CalendarView: View {
                             Image(systemName: "calendar.circle")
                             Text(text)
                                 .transition(.scale)
+                            .frame(width: 200)
                             Text("\(DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none))")
-                        }.frame(height: 100)
+                                .frame(width: 70)
+                        }.frame(height: 70)
                     }
                     Image(systemName: "chevron.up.square")
                         .scaleEffect(showCalendar ? 1.5 : 1)
