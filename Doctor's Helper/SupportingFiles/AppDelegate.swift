@@ -45,14 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func scheduleNotification(with list: ListOfUnworking) {
+    func scheduleNotification(with list: ListOfUnworking, and date: Date) {
         
         let content = UNMutableNotificationContent()
         
         content.sound = UNNotificationSound.default
         content.badge = 1
         content.title = "Не забудьте продлить л/н №\(list.listNumber)"
-        let date = list.endDate
         var triggerDate = Calendar.current.dateComponents(in: .current, from: date)
         triggerDate.hour = 10
         triggerDate.minute = 30

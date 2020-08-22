@@ -31,4 +31,13 @@ class CalculatingService {
             endDate: endDate)
         return listOfUnworking
     }
+    
+    func savingToStorageString(startDate: Date, endDate: Date, numbeOfString: NumberOfContinueString, listNumber: String) -> ContinueListWithoutNumber {
+        let totalDays = getDays(from: startDate, to: endDate)
+        let continueListString = ContinueListWithoutNumber(startDate: startDate,
+                                                           endDate: endDate,
+                                                           numberOfString: numbeOfString,
+                                                           totalDays: totalDays, listNumber: listNumber)
+        return continueListString
+    }
 }

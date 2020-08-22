@@ -16,8 +16,10 @@ struct DeatailInfoView: View {
     @State private var isPresented = false
     @ObservedObject private var lists = ListsOfUnworking()
     @Binding var isActive: Bool
+    @State private var continueIsPresented = false
     
-    @State var showAskingOfDeleteAlert = false
+    @State private var showAskingOfDeleteAlert = false
+    @State var stringsCount: [ContinueListWithoutNumber] = []
     
     var body: some View {
         ScrollView {
@@ -46,6 +48,19 @@ struct DeatailInfoView: View {
                             .fontWeight(.bold)
                     }
                     HStack {
+                        if stringsCount.count < 2 {
+                        Button(action: {
+                            self.continueIsPresented.toggle()
+                        }) {
+                            Text("Продлить")
+                        }.sheet(isPresented: $continueIsPresented) {
+                            ContinueWithStringCalculate(list: self.list,
+                                                        showModal: self.$continueIsPresented,
+                                                        date: self.list.endDate)
+                        }
+                        }
+                        
+                        
                         Spacer()
                         Button( action: {
                             self.showAskingOfDeleteAlert.toggle()
@@ -62,8 +77,11 @@ struct DeatailInfoView: View {
                               secondaryButton: Alert.Button.cancel())
                     }
                 }
+                .onAppear {
+                        self.stringsCount = self.lists.fetchContinueStrings(with: self.list.listNumber)
+                    }
                 .padding()
-.modifier(SectionModifier())
+                .modifier(SectionModifier())
                 .padding(.top, 20)
                 
                 Spacer()
@@ -112,7 +130,7 @@ struct DeatailInfoView: View {
                                     }
                                 }
                                 .padding()
-                            .modifier(SectionModifier())
+                                .modifier(SectionModifier())
                                 .padding(.top, 20)
                             }
                         }
@@ -130,17 +148,17 @@ struct DeatailInfoView: View {
                                  resultText: "")
                 }
                 .frame(width: 200, height: 70)
-            .modifier(CommonBlueButtonModifier())
+                .modifier(CommonBlueButtonModifier())
                 .padding(.top, 20)
                 Spacer()
             }
                 
             .padding()
         }
-        .background(Color.green.blur(radius: 10).brightness(0.6))
-    }
+            .background(AngularGradient.init(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.7500734925, green: 1, blue: 0.9300767779, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]), center: .bottomTrailing, startAngle: .zero, endAngle: .degrees(100)))
+        
 }
-
+}
 struct DeatailInfoView_Previews: PreviewProvider {
     static var previews: some View {
         DeatailInfoView(list: ListOfUnworking(id: 12,
@@ -179,4 +197,5 @@ extension DeatailInfoView {
         }
         
     }
+ 
 }

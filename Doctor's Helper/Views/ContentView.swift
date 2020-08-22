@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
 
+
     var body: some View {
         NavigationView {
             ZStack {
-                Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
-                
+//                Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
+                AngularGradient.init(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.7500734925, green: 1, blue: 0.9300767779, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]), center: .bottomTrailing, startAngle: .zero, endAngle: .degrees(100)).edgesIgnoringSafeArea(.all)
                 VStack {
                     Image("mainView").opacity(0.6)
                     Spacer()
@@ -36,8 +37,10 @@ struct ContentView: View {
                     Spacer()
                 }
                 .navigationBarTitle("Doctor's Helper")
+                
             }
         }
+
     }
 }
 

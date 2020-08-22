@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3083FA824F177D1007A2DE9 /* ContinueListWithoutNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FA724F177D1007A2DE9 /* ContinueListWithoutNumber.swift */; };
+		B3083FAA24F1784C007A2DE9 /* NumberOfContinueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */; };
+		B3083FAC24F17B41007A2DE9 /* ContinueWithStringCalculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */; };
 		B310110924EE728F00186136 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310110824EE728F00186136 /* Lists.swift */; };
 		B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62124ED41840010A9F5 /* ContinueList.swift */; };
 		B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */; };
@@ -23,13 +26,15 @@
 		B3AFB25F24E328600000B566 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB25E24E328600000B566 /* StorageService.swift */; };
 		B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */; };
 		B3CA2C0324EDA9E500831A92 /* TextFieldSaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */; };
-		B3D1652F24F066FB00CBB886 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D1652E24F066FB00CBB886 /* PopoverView.swift */; };
 		B3D1653124F06B7600CBB886 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D1653024F06B7600CBB886 /* CustomModifiers.swift */; };
 		B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3424EE9465007B11E1 /* RowList.swift */; };
 		B3E2DE3724EEB551007B11E1 /* DeatailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B3083FA724F177D1007A2DE9 /* ContinueListWithoutNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueListWithoutNumber.swift; sourceTree = "<group>"; };
+		B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfContinueString.swift; sourceTree = "<group>"; };
+		B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithStringCalculate.swift; sourceTree = "<group>"; };
 		B310110824EE728F00186136 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
 		B3A8F62124ED41840010A9F5 /* ContinueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueList.swift; sourceTree = "<group>"; };
 		B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatingService.swift; sourceTree = "<group>"; };
@@ -48,7 +53,6 @@
 		B3AFB25E24E328600000B566 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateButtonView.swift; sourceTree = "<group>"; };
 		B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSaveButtonView.swift; sourceTree = "<group>"; };
-		B3D1652E24F066FB00CBB886 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		B3D1653024F06B7600CBB886 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		B3E2DE3424EE9465007B11E1 /* RowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowList.swift; sourceTree = "<group>"; };
 		B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatailInfoView.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				B310110824EE728F00186136 /* Lists.swift */,
+				B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -124,7 +129,7 @@
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
 				B3CA2C0024EDA46800831A92 /* CalculateButtonView.swift */,
 				B3CA2C0224EDA9E500831A92 /* TextFieldSaveButtonView.swift */,
-				B3D1652E24F066FB00CBB886 /* PopoverView.swift */,
+				B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B3AFB25924E31CB70000B566 /* ListModel.swift */,
+				B3083FA724F177D1007A2DE9 /* ContinueListWithoutNumber.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,20 +244,22 @@
 			files = (
 				B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */,
 				B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */,
-				B3D1652F24F066FB00CBB886 /* PopoverView.swift in Sources */,
 				B3E2DE3724EEB551007B11E1 /* DeatailInfoView.swift in Sources */,
 				B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */,
 				B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */,
 				B3D1653124F06B7600CBB886 /* CustomModifiers.swift in Sources */,
 				B3AFB24224E2D2A50000B566 /* SceneDelegate.swift in Sources */,
 				B3AFB25424E2D31D0000B566 /* CalculatingView.swift in Sources */,
+				B3083FAA24F1784C007A2DE9 /* NumberOfContinueString.swift in Sources */,
 				B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */,
 				B3AFB24424E2D2A50000B566 /* ContentView.swift in Sources */,
+				B3083FA824F177D1007A2DE9 /* ContinueListWithoutNumber.swift in Sources */,
 				B3AFB25A24E31CB70000B566 /* ListModel.swift in Sources */,
 				B310110924EE728F00186136 /* Lists.swift in Sources */,
 				B3AFB25F24E328600000B566 /* StorageService.swift in Sources */,
 				B3AFB25824E31C900000B566 /* StorageListView.swift in Sources */,
 				B3AFB25624E2E8C40000B566 /* CalendarView.swift in Sources */,
+				B3083FAC24F17B41007A2DE9 /* ContinueWithStringCalculate.swift in Sources */,
 				B3CA2C0324EDA9E500831A92 /* TextFieldSaveButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,4 +25,15 @@ class ListsOfUnworking: ObservableObject {
         let list = StorageManager.shared.fetchLists()
         return list
     }
+    
+    func fetchContinueStrings(with listNumber: String) -> [ContinueListWithoutNumber] {
+           let lists = StorageManager.shared.fetchListsString()
+        var strings: [ContinueListWithoutNumber] = []
+        for list in lists {
+            if list.listNumber == listNumber {
+            strings.append(list)
+            }
+        }
+           return strings
+       }
 }

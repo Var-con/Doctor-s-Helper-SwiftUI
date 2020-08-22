@@ -19,6 +19,7 @@ struct TextFieldSaveButtonView: View {
     @Binding var endValue: Date
     @State var list: ListOfUnworking?
     @Binding var exitToPreviousPage: Bool
+    @State var showRewrightListNumber = false
     
     var body: some View {
         HStack {
@@ -38,14 +39,21 @@ struct TextFieldSaveButtonView: View {
             }) {
                 Text("Сохранить")
             }.alert(isPresented: $savingAlert) {
-                Alert(title: Text("Сохранено"),
-                      message: Text("Больничный успешно сохранен"),
-                      dismissButton: .default(Text("Ok"),
-                                              action: {
-                    self.exitToPreviousPage.toggle()
-                }))
+                
+                return Alert(title: Text("Сохранено"),
+                             message: Text("Больничный успешно сохранен"),
+                             dismissButton: .default(Text("Ok"),
+                                                     action: {
+                                                        self.exitToPreviousPage.toggle()
+                             }))
+            }
+            Spacer().alert(isPresented: $showRewrightListNumber) {
+                Alert(title: Text("Ошибка"),
+                      message: Text("Номер больничного листа не уникален"),
+                      dismissButton: .default(Text("Ok")))
             }
         }
+            
         .padding(.all, 10)
         .animation(.default)
     }
@@ -76,8 +84,16 @@ extension TextFieldSaveButtonView {
         if self.continueList {
             list.previoslyListNumber = self.list?.listNumber
         }
-        appDelegate?.scheduleNotification(with: list)
-        StorageManager.shared.saveList(with: list)
+        let uniqLists = StorageManager.shared.fetchLists()
+        for uniqList in uniqLists {
+            guard uniqList.listNumber != list.listNumber else {
+                showRewrightListNumber.toggle()
+                return
+                
+            }
+        }
+        appDelegate?.scheduleNotification(with: list, and: list.endDate)
         self.savingAlert.toggle()
+        StorageManager.shared.saveList(with: list)
     }
 }

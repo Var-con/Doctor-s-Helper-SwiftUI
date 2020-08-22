@@ -12,6 +12,7 @@ class StorageManager {
     static let shared = StorageManager()
     private let userDefaults = UserDefaults.standard
     private let arrayKey = "list"
+     private let keyStrings = "ContinueStrings"
     private init() {}
     
     func saveList(with list: ListOfUnworking) {
@@ -37,6 +38,36 @@ class StorageManager {
     }
     
     func saveArrayOfLists(with lists: [ListOfUnworking]) {
+         guard let data = try? JSONEncoder().encode(lists) else { return }
+         userDefaults.setValue(data, forKeyPath: arrayKey)
+     }
+}
+
+extension StorageManager {
+
+    
+    func saveContinueListString(with list: ContinueListWithoutNumber) {
+        var lists = fetchListsString()
+        lists.append(list)
+        guard let data = try? JSONEncoder().encode(lists) else { return }
+        userDefaults.setValue(data, forKeyPath: keyStrings)
+    }
+    
+    func fetchListsString() -> [ContinueListWithoutNumber] {
+        guard let data = userDefaults.object(forKey: keyStrings) as? Data else { return [] }
+        guard let lists = try? JSONDecoder().decode([ContinueListWithoutNumber].self, from: data) else { return [] }
+        return lists
+    }
+
+    func deleteListInListsOfStrings(at index: Int) {
+        var lists = fetchListsString()
+        lists.remove(at: index)
+        guard let data = try? JSONEncoder().encode(lists) else { return }
+        userDefaults.setValue(data, forKey: keyStrings)
+        return
+    }
+    
+    func saveArrayOfListsStingsContinue(with lists: [ContinueListWithoutNumber]) {
          guard let data = try? JSONEncoder().encode(lists) else { return }
          userDefaults.setValue(data, forKeyPath: arrayKey)
      }

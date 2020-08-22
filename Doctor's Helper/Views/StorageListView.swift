@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct StorageListView: View {
-    
+
     @ObservedObject private var lists = ListsOfUnworking()
     @State var listsForTable: [ListOfUnworking] = []
     @State var popover = false
@@ -21,15 +21,12 @@ struct StorageListView: View {
                     Text("Вы еще не добавляли своих больничных листов.")
                 }
                 }
-            
     
             .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
                 .onAppear {
                     self.listsForTable = self.lists.fetchListWithoutPrevioslyNumber()
-                    if self.listsForTable.isEmpty {
-                        self.popover.toggle()
-                    }
-            }
+        }
+            .listStyle(GroupedListStyle())
         }
     }
     
