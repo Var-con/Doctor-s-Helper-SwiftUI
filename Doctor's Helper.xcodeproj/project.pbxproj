@@ -95,6 +95,7 @@
 				B3AFB26024E328670000B566 /* StorageService */,
 				B310110A24EE8BC000186136 /* Entity */,
 				B3AFB25B24E324160000B566 /* Views */,
+				B3D1653224F0707200CBB886 /* Modifiers */,
 				B3AFB25C24E324270000B566 /* Model */,
 				B3AFB25D24E324320000B566 /* SupportingFiles */,
 				B3AFB24D24E2D2AD0000B566 /* Info.plist */,
@@ -118,7 +119,6 @@
 				B3AFB25324E2D31D0000B566 /* CalculatingView.swift */,
 				B3AFB25724E31C900000B566 /* StorageListView.swift */,
 				B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */,
-				B3D1653024F06B7600CBB886 /* CustomModifiers.swift */,
 				B3A8F62124ED41840010A9F5 /* ContinueList.swift */,
 				B3E2DE3424EE9465007B11E1 /* RowList.swift */,
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
@@ -155,6 +155,14 @@
 				B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		B3D1653224F0707200CBB886 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				B3D1653024F06B7600CBB886 /* CustomModifiers.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

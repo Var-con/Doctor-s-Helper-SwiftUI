@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func requestAutorezation() {
         notificationCente.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-            print("Permission grnted: \(granted)")
+            print("Permission granted: \(granted)")
             
             guard granted else { return }
             self.getNotificationSettings()

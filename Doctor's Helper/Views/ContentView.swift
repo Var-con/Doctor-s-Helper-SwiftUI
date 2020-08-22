@@ -31,10 +31,7 @@ struct ContentView: View {
                         Image(systemName: "folder")
                     }
                     .frame(width: 200, height: 70)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .overlay(RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.blue, lineWidth: 3))
+                .modifier(CommonWhiteButtonModifier())
                     .padding(.top, 20)
                     Spacer()
                 }

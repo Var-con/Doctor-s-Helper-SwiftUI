@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContinueList: View {
-
+    
     var list: ListOfUnworking
     @Binding var showModal: Bool
     @State var date: Date
@@ -17,34 +17,45 @@ struct ContinueList: View {
     @State private var listNumber = ""
     @State private var savingAlert = false
     @State private var showAlert = false
+    @State var resultText: String
     var body: some View {
         ZStack {
             Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
-        VStack {
             VStack {
-                Text("Продолжение листа нетрудоспособности №\(list.listNumber)")
+                VStack {
+                    VStack {
+                        Text("Продолжение листа нетрудоспособности").frame(width: 325, height: 25).font(.footnote)
+                        Text("№\(list.listNumber)").fontWeight(.semibold)
+                        
+                        CalendarView(date: $date , text: "Дата начала:")
+                        CalendarView(date: $endDate, text: "Дата окончания:").padding(.top, 10)
+                    }
+                    .padding()
+                    .modifier(SectionModifier())
+                    TextFieldSaveButtonView(listNumber: listNumber,
+                                            savingAlert: savingAlert,
+                                            showAlert: showAlert,
+                                            continueList: true,
+                                            startValue: $date,
+                                            endValue: $endDate,
+                                            list: list,
+                                            exitToPreviousPage: $showModal)
+                    
+                }
+                Text(resultText)
+                .font(.headline)
+                .padding(.bottom, 10)
+                CalculateButtonView(startDate: $date,
+                                    endDate: $endDate,
+                                    resultText: $resultText)
                 
-                CalendarView(date: $date , text: "Дата начала:")
-                CalendarView(date: $endDate, text: "Дата окончания:")
-                
-                TextFieldSaveButtonView(listNumber: listNumber,
-                                        savingAlert: savingAlert,
-                                        showAlert: showAlert,
-                                        continueList: true,
-                                        startValue: $date,
-                                        endValue: $endDate,
-                                        list: list,
-                                        exitToPreviousPage: $showModal)
-                
+                Button("Закрыть") {
+                    self.showModal = false
+                }
+                .frame(width: 100, height: 30)
+                .modifier(CommonRejectButton())
+                .padding(.top, 15)
             }
-            .padding()
-            .modifier(SectionModifier())
-            .padding(.horizontal, 10)
-            
-            Button("Close") {
-                self.showModal = false
-            }
-        }
         }
     }
 }
@@ -58,7 +69,7 @@ struct ContinueList_Previews: PreviewProvider {
                                   startDate: Date.init(),
                                   endDate: Date.init()),
             showModal: .constant(true),
-            date: Date.init())
+            date: Date.init(), resultText: "11111")
     }
 }
 

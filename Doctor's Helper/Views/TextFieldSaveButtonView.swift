@@ -22,7 +22,7 @@ struct TextFieldSaveButtonView: View {
     
     var body: some View {
         HStack {
-            TextField("Введите номер больничного", text: $listNumber)
+            TextField("Номер больничного", text: $listNumber)
                 .padding(.leading, 20)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .alert(isPresented: $showAlert) {

@@ -124,7 +124,10 @@ struct DeatailInfoView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                 }.sheet(isPresented: $isPresented) {
-                    ContinueList(list: self.list, showModal: self.$isPresented, date: self.list.endDate)
+                    ContinueList(list: self.list,
+                                 showModal: self.$isPresented,
+                                 date: self.list.endDate,
+                                 resultText: "")
                 }
                 .frame(width: 200, height: 70)
             .modifier(CommonBlueButtonModifier())

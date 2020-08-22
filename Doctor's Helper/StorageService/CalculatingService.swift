@@ -15,7 +15,6 @@ class CalculatingService {
     func getDays(from startDate: Date, to endDate: Date) -> Int{
         guard endDate >= startDate else { return 0}
         let targetValue = DateInterval(start: startDate, end: endDate)
-        print(targetValue.duration)
         let resultSeconds = lround(targetValue.duration / 86400) + 1
         return resultSeconds
     }

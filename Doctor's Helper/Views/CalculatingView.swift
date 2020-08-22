@@ -59,12 +59,14 @@ struct CalculatingView: View {
                             Text("Сохранить лист нетрудоспособности").font(.footnote)
                         }
                         .frame(width: 170, height: 50)
+                        .modifier(CommonWhiteButtonModifier())
                         
                         Button(action: {
                             self.restoreToDefault()
                         }) {
                             Text("Очистить")
-                        }.frame(width: 100)
+                        }.frame(width: 100, height: 50)
+                        .modifier(CommonRejectButton())
                     }.padding(.top, 10)
                     Spacer().frame(height: 20)
                 }
