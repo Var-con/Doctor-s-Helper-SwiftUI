@@ -11,6 +11,7 @@
 		B3083FAA24F1784C007A2DE9 /* NumberOfContinueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */; };
 		B3083FAC24F17B41007A2DE9 /* ContinueWithStringCalculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */; };
 		B310110924EE728F00186136 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310110824EE728F00186136 /* Lists.swift */; };
+		B33C8A3124F51B900095616E /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C8A3024F51B900095616E /* SectionView.swift */; };
 		B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62124ED41840010A9F5 /* ContinueList.swift */; };
 		B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */; };
 		B3AFB24024E2D2A50000B566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AFB23F24E2D2A50000B566 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfContinueString.swift; sourceTree = "<group>"; };
 		B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithStringCalculate.swift; sourceTree = "<group>"; };
 		B310110824EE728F00186136 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
+		B33C8A3024F51B900095616E /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		B3A8F62124ED41840010A9F5 /* ContinueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueList.swift; sourceTree = "<group>"; };
 		B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatingService.swift; sourceTree = "<group>"; };
 		B3AFB23C24E2D2A50000B566 /* Doctor's Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doctor's Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 				B3AFB25324E2D31D0000B566 /* CalculatingView.swift */,
 				B3AFB25724E31C900000B566 /* StorageListView.swift */,
 				B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */,
+				B33C8A3024F51B900095616E /* SectionView.swift */,
 				B3A8F62124ED41840010A9F5 /* ContinueList.swift */,
 				B3E2DE3424EE9465007B11E1 /* RowList.swift */,
 				B3AFB25524E2E8C30000B566 /* CalendarView.swift */,
@@ -254,6 +257,7 @@
 				B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */,
 				B3AFB24424E2D2A50000B566 /* ContentView.swift in Sources */,
 				B3083FA824F177D1007A2DE9 /* ContinueListWithoutNumber.swift in Sources */,
+				B33C8A3124F51B900095616E /* SectionView.swift in Sources */,
 				B3AFB25A24E31CB70000B566 /* ListModel.swift in Sources */,
 				B310110924EE728F00186136 /* Lists.swift in Sources */,
 				B3AFB25F24E328600000B566 /* StorageService.swift in Sources */,
