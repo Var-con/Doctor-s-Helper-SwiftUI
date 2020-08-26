@@ -9,6 +9,6 @@
 import Foundation
 
 enum NumberOfContinueString : String, Codable {
-    case second
-    case third
+    case second = "Вторая"
+    case third = "Третья"
 }

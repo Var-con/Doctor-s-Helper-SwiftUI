@@ -10,17 +10,25 @@ import SwiftUI
 
 struct SectionView: View {
     
-    private let listsOfUnworkingStored = ListsOfUnworking()
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    @ObservedObject private var listsOfUnworkingStored = ListsOfUnworking()
     @State var list: ListOfUnworking
+    @State var firstList: ListOfUnworking
     @State var continueIsPresented: Bool
-    @State var lists: [ContinueListWithoutNumber] = []
     @State var showAskingOfDeleteAlert: Bool = false
     @Binding var isActive: Bool
-//    @State var action: (list: ListOfUnworking) -> Void
+    @Binding var storedContinueLists: [ListOfUnworking]
+    
     var body: some View {
         
         VStack {
+            if self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber).count == 2{
+                Text("Всего дней нетрудоспособности: \(list.totalDays + self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber)[0].totalDays + self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber)[1].totalDays)").fontWeight(.bold)
+            } else if self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber).count == 1 {
+                Text("Всего дней нетрудоспособности: \(list.totalDays + self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber)[0].totalDays)").fontWeight(.bold)
+            } else {
+                Text("Всего дней нетрудоспособности: \(list.totalDays)").fontWeight(.bold)
+            }
             VStack {
                 Text("Лист нетрудоспособности: № ")
                 Text("\(list.listNumber)")
@@ -34,27 +42,19 @@ struct SectionView: View {
                                                    timeStyle: .none))
                     .fontWeight(.bold)
             }
+            
             HStack {
-                Text("Дата окончания нетрудоспособности: ")
-                Spacer()
-                Text(DateFormatter.localizedString(from: list.endDate,
-                                                   dateStyle: .medium,
-                                                   timeStyle: .none))
-                    .fontWeight(.bold)
-            }
-            HStack {
-                if lists.count < 2 {
-                    Button(action: {
-                        self.continueIsPresented.toggle()
-                    }) {
-                        Text("Продлить")
-                    }.sheet(isPresented: $continueIsPresented) {
-                        ContinueWithStringCalculate(list: self.list,
-                                                    showModal: self.$continueIsPresented,
-                                                    date: self.list.endDate)
-                    }
+                Button(action: {
+                    self.continueIsPresented.toggle()
+                }) {
+                    Text("Продлить")
                 }
-                
+                .sheet(isPresented: $continueIsPresented) {
+                    ContinueWithStringCalculate(list: self.list,
+                                                showModal: self.$continueIsPresented,
+                                                date: self.list.endDate)
+                }
+                .disabled(listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber).count == 2)
                 
                 Spacer()
                 Button( action: {
@@ -72,9 +72,44 @@ struct SectionView: View {
                       }),
                       secondaryButton: Alert.Button.cancel())
             }
-        }
-        .onAppear {
-//            self.stringsCount = self.$lists.fetchContinueStrings(with: self.list.listNumber)
+            if self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber) != [] {
+                ForEach(self.listsOfUnworkingStored.fetchContinueStrings(with: list.listNumber), id: \.endDate) { continueString in
+                VStack {
+                    if continueString.numberOfString == .second {
+                        Text("Вторая строка")
+                    } else {
+                        Text("Третья строка")
+                    }
+                    HStack {
+                        Text("Дата начала: ")
+                        Spacer()
+                        Text(DateFormatter.localizedString(from: continueString.startDate,
+                                                           dateStyle: .medium,
+                                                           timeStyle: .none))
+                            .fontWeight(.bold)
+                    }
+                    HStack {
+                        Text("Дата окончания: ")
+                        Spacer()
+                        Text(DateFormatter.localizedString(from: continueString.endDate,
+                                                           dateStyle: .medium,
+                                                           timeStyle: .none))
+                            .fontWeight(.bold)
+                        
+                    }
+                    Text("Всего дней: \(continueString.totalDays)")
+                }
+            }
+            } else {
+                HStack {
+                    Text("Дата окончания нетрудоспособности: ")
+                    Spacer()
+                    Text(DateFormatter.localizedString(from: list.endDate,
+                                                       dateStyle: .medium,
+                                                       timeStyle: .none))
+                        .fontWeight(.bold)
+                }
+            }
         }
         .padding()
         .modifier(SectionModifier())
@@ -100,14 +135,16 @@ extension SectionView {
                     index < listsArray.count {
                     listsArray.remove(at: index)
                     appDelegate?.notificationCente.removePendingNotificationRequests(withIdentifiers: ["Local Notification \(list.listNumber)"])
+                    StorageManager.shared.deleteListInListsOfStrings(with: listOfUnwork.listNumber)
                 }
             }
         }
+        StorageManager.shared.deleteListInListsOfStrings(with: list.listNumber)
         StorageManager.shared.saveArrayOfLists(with: listsArray)
-        if self.list.listNumber == list.listNumber {
+        if self.firstList.listNumber == list.listNumber {
             isActive.toggle()
         }
-        
+        self.storedContinueLists = self.listsOfUnworkingStored.fetchListWithPrevioslyNumber()
     }
- 
+    
 }

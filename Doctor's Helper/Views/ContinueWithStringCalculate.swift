@@ -17,11 +17,9 @@ struct ContinueWithStringCalculate: View {
     @State private var endDate: Date = Date()
     @State private var savingAlert = false
     @State private var showAlert = false
-    var numberOfString: NumberOfContinueString = .second
     
     var body: some View {
         ZStack {
-//            Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
             AngularGradient.init(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.7500734925, green: 1, blue: 0.9300767779, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]), center: .bottomTrailing, startAngle: .zero, endAngle: .degrees(100))
             VStack {
                 VStack {
@@ -85,6 +83,7 @@ struct ContinueWithStringCalculate_Previews: PreviewProvider {
 
 extension ContinueWithStringCalculate {
     private func save() {
+        var numberOfString: NumberOfContinueString = .second
           let resultDays = CalculatingService
               .shared
             .getDays(from: self.date, to: self.endDate)
@@ -92,7 +91,13 @@ extension ContinueWithStringCalculate {
               self.showAlert.toggle()
               return
           }
-          let listOfString = CalculatingService
+        let array = ListsOfUnworking()
+        let arrayOfStrings = array.fetchContinueStrings(with: list.listNumber)
+        if arrayOfStrings.count > 0 {
+            numberOfString = .third
+        }
+        
+        let listOfString = CalculatingService
               .shared
               .savingToStorageString(startDate: date,
                                      endDate: endDate,
@@ -102,5 +107,6 @@ extension ContinueWithStringCalculate {
         
           self.savingAlert.toggle()
         StorageManager.shared.saveContinueListString(with: listOfString)
+    
       }
 }

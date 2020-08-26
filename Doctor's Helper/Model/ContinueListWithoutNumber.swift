@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ContinueListWithoutNumber: Codable {
+struct ContinueListWithoutNumber: Codable, Equatable {
     var startDate: Date
     var endDate: Date
     var numberOfString: NumberOfContinueString

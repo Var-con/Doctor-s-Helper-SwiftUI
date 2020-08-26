@@ -44,7 +44,6 @@ class StorageManager {
 }
 
 extension StorageManager {
-
     
     func saveContinueListString(with list: ContinueListWithoutNumber) {
         var lists = fetchListsString()
@@ -59,9 +58,19 @@ extension StorageManager {
         return lists
     }
 
-    func deleteListInListsOfStrings(at index: Int) {
+    func deleteListInListsOfStrings(with listNumber: String) {
+        
         var lists = fetchListsString()
-        lists.remove(at: index)
+        for (index, list) in lists.enumerated() {
+            print(index)
+            if list.listNumber == listNumber {
+                if index < lists.count {
+                        lists.remove(at: index)
+                } else {
+                    lists.remove(at: 0)
+                }
+            }
+        }
         guard let data = try? JSONEncoder().encode(lists) else { return }
         userDefaults.setValue(data, forKey: keyStrings)
         return

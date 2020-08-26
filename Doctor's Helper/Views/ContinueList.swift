@@ -18,9 +18,10 @@ struct ContinueList: View {
     @State private var savingAlert = false
     @State private var showAlert = false
     @State var resultText: String
+    @Binding var storedContinueLists: [ListOfUnworking]
+    
     var body: some View {
         ZStack {
-//            Color.green.edgesIgnoringSafeArea(.all).blur(radius: 10).brightness(0.6)
             AngularGradient.init(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.7500734925, green: 1, blue: 0.9300767779, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]), center: .bottomTrailing, startAngle: .zero, endAngle: .degrees(100))
             VStack {
                 VStack {
@@ -40,7 +41,8 @@ struct ContinueList: View {
                                             startValue: $date,
                                             endValue: $endDate,
                                             list: list,
-                                            exitToPreviousPage: $showModal)
+                                            exitToPreviousPage: $showModal,
+                                            storedContinueLists: $storedContinueLists)
                     
                 }
                 Text(resultText)
@@ -70,7 +72,7 @@ struct ContinueList_Previews: PreviewProvider {
                                   startDate: Date.init(),
                                   endDate: Date.init()),
             showModal: .constant(true),
-            date: Date.init(), resultText: "11111")
+            date: Date.init(), resultText: "11111", storedContinueLists: .constant([]))
     }
 }
 

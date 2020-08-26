@@ -12,7 +12,6 @@ struct StorageListView: View {
 
     @ObservedObject private var lists = ListsOfUnworking()
     @State var listsForTable: [ListOfUnworking] = []
-    @State var popover = false
     
     var body: some View {
             List (listsForTable, id: \.listNumber) { list in

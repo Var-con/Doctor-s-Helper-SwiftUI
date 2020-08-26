@@ -20,6 +20,8 @@ struct TextFieldSaveButtonView: View {
     @State var list: ListOfUnworking?
     @Binding var exitToPreviousPage: Bool
     @State var showRewrightListNumber = false
+    @Binding var storedContinueLists: [ListOfUnworking]
+    @ObservedObject var lists = ListsOfUnworking()
     
     var body: some View {
         HStack {
@@ -61,7 +63,7 @@ struct TextFieldSaveButtonView: View {
 
 struct TextFieldSaveButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false))
+        TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false), storedContinueLists: .constant([]))
     }
 }
 
@@ -95,5 +97,6 @@ extension TextFieldSaveButtonView {
         appDelegate?.scheduleNotification(with: list, and: list.endDate)
         self.savingAlert.toggle()
         StorageManager.shared.saveList(with: list)
+        self.storedContinueLists = self.lists.fetchListWithPrevioslyNumber()
     }
 }
