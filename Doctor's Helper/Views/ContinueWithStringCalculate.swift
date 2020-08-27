@@ -17,6 +17,7 @@ struct ContinueWithStringCalculate: View {
     @State private var endDate: Date = Date()
     @State private var savingAlert = false
     @State private var showAlert = false
+    @Binding var storedString: [ContinueListWithoutNumber]
     
     var body: some View {
         ZStack {
@@ -35,17 +36,25 @@ struct ContinueWithStringCalculate: View {
                     .padding()
                     .modifier(SectionModifier())
                     .alert(isPresented: $showAlert) {
-                            Alert(
-                                title: Text("Ошибка ввода!"),
-                                message: Text("День окончания листа нетрудоспособности установлен раньше дня начала листа нетрудоспособности! Введите правильную дату."),
-                                dismissButton: .default(Text("Ok"))
-                            )
+                        Alert(
+                            title: Text("Ошибка ввода!"),
+                            message: Text("День окончания листа нетрудоспособности установлен раньше дня начала листа нетрудоспособности! Введите правильную дату."),
+                            dismissButton: .default(Text("Ok"))
+                        )
                     }
                     Button(action: {
+                        
                         self.save()
+                        self.storedString = StorageManager.shared.fetchListsString().filter { $0.listNumber == self.list.listNumber }
                     }) {
                         Text("Сохранить")
-                    }.alert(isPresented: $savingAlert) {
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                    }
+                    .frame(width: 200, height: 50)
+                    .modifier(CommonBlueButtonModifier())
+                    .padding(.top, 15)
+                    .alert(isPresented: $savingAlert) {
                         
                         return Alert(title: Text("Сохранено"),
                                      message: Text("Больничный успешно сохранен"),
@@ -54,18 +63,18 @@ struct ContinueWithStringCalculate: View {
                                                                 self.showModal.toggle()
                                      }))
                     }
-
-                Button("Закрыть") {
-                    self.showModal = false
-                }
-                .frame(width: 100, height: 30)
-                .modifier(CommonRejectButton())
-                .padding(.top, 15)
                     
+                    Button("Закрыть") {
+                        self.showModal = false
+                    }
+                    .frame(width: 100, height: 30)
+                    .modifier(CommonRejectButton())
+                    .padding(.top, 15)
+                    
+                }
             }
         }
     }
-}
 }
 struct ContinueWithStringCalculate_Previews: PreviewProvider {
     static var previews: some View {
@@ -76,7 +85,7 @@ struct ContinueWithStringCalculate_Previews: PreviewProvider {
                                   startDate: Date.init(),
                                   endDate: Date.init()),
             showModal: .constant(true),
-            date: Date.init())
+            date: Date.init(), storedString: .constant([]))
     }
 }
 
@@ -84,13 +93,13 @@ struct ContinueWithStringCalculate_Previews: PreviewProvider {
 extension ContinueWithStringCalculate {
     private func save() {
         var numberOfString: NumberOfContinueString = .second
-          let resultDays = CalculatingService
-              .shared
+        let resultDays = CalculatingService
+            .shared
             .getDays(from: self.date, to: self.endDate)
-          guard resultDays > 0 else {
-              self.showAlert.toggle()
-              return
-          }
+        guard resultDays > 0 else {
+            self.showAlert.toggle()
+            return
+        }
         let array = ListsOfUnworking()
         let arrayOfStrings = array.fetchContinueStrings(with: list.listNumber)
         if arrayOfStrings.count > 0 {
@@ -98,15 +107,15 @@ extension ContinueWithStringCalculate {
         }
         
         let listOfString = CalculatingService
-              .shared
-              .savingToStorageString(startDate: date,
-                                     endDate: endDate,
-                                     numbeOfString: numberOfString,
-                                     listNumber: list.listNumber)
+            .shared
+            .savingToStorageString(startDate: date,
+                                   endDate: endDate,
+                                   numbeOfString: numberOfString,
+                                   listNumber: list.listNumber)
         
         
-          self.savingAlert.toggle()
+        self.savingAlert.toggle()
         StorageManager.shared.saveContinueListString(with: listOfString)
-    
-      }
+        
+    }
 }

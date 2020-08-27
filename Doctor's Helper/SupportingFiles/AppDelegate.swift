@@ -12,11 +12,11 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let notificationCente = UNUserNotificationCenter.current()
+    let notificationCenter = UNUserNotificationCenter.current()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         requestAutorezation()
-        notificationCente.delegate = self
+        notificationCenter.delegate = self
         return true
     }
     
@@ -31,16 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func requestAutorezation() {
-        notificationCente.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
             print("Permission granted: \(granted)")
-            
             guard granted else { return }
             self.getNotificationSettings()
         }
     }
     
     func getNotificationSettings() {
-        notificationCente.getNotificationSettings { (settings) in
+        notificationCenter.getNotificationSettings { (settings) in
             print("\(settings)")
         }
     }
@@ -54,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         content.title = "Не забудьте продлить л/н №\(list.listNumber)"
         var triggerDate = Calendar.current.dateComponents(in: .current, from: date)
         triggerDate.hour = 10
-        triggerDate.minute = 30
+        triggerDate.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
         let identifier = "Local Notification \(list.listNumber)"
@@ -62,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                             content: content,
                                             trigger: trigger)
         
-        notificationCente.add(request) { (error) in
+        notificationCenter.add(request) { (error) in
             if let error = error {
                 print("Error \(error.localizedDescription)")
             }

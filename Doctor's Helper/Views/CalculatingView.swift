@@ -9,14 +9,13 @@
 import SwiftUI
 
 struct CalculatingView: View {
-    @State var startValue: Date = Date.init()
-    @State var endValue: Date = Date.init()
+    @State var startDate: Date = Date()
+    @State var endDate: Date = Date()
     @State private var resultText: String = ""
     @State private var showAlert = false
     @State private var showTextField = false
     @State private var listNumber = ""
     @State private var savingAlert = false
-    @State var exitToPreviousPage: Bool
     
     var body: some View {
         ZStack {
@@ -27,10 +26,10 @@ struct CalculatingView: View {
             VStack {
                 Spacer()
                 VStack {
-                    CalendarView(date: $startValue,
+                    CalendarView(date: $startDate,
                                  text: "Начало нетрудоспособности")
                         .padding(.top, 5)
-                    CalendarView(date: $endValue,
+                    CalendarView(date: $endDate,
                                  text: "Окончание нетрудоспособности")
                         .padding(.top, 10)
                 }
@@ -43,9 +42,9 @@ struct CalculatingView: View {
                         savingAlert: savingAlert,
                         showAlert: showAlert,
                         continueList: false,
-                        startValue: $startValue,
-                        endValue: $endValue,
-                        exitToPreviousPage: $exitToPreviousPage,
+                        startValue: $startDate,
+                        endValue: $endDate,
+                        exitToPreviousPage: .constant(false),
                         storedContinueLists: .constant([]))
                 } else {
                     Spacer().frame(height: 34)
@@ -54,7 +53,7 @@ struct CalculatingView: View {
                     Text(resultText)
                         .font(.headline)
                         .padding(.all, 10)
-                    CalculateButtonView(startDate: $startValue, endDate: $endValue, resultText: $resultText)
+                    CalculateButtonView(startDate: $startDate, endDate: $endDate, resultText: $resultText)
                     
                     HStack {
                         Button(action: {
@@ -83,7 +82,7 @@ struct CalculatingView: View {
 
 struct CalculatingView_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatingView(startValue: Date.init(), endValue: Date.init(), exitToPreviousPage: false)
+        CalculatingView(startDate: Date.init(), endDate: Date.init())
     }
 }
 
@@ -91,8 +90,8 @@ extension CalculatingView {
 
     private func restoreToDefault() {
         resultText = ""
-        startValue = .init()
-        endValue = .init()
+        startDate = .init()
+        endDate = .init()
         showTextField = false
         savingAlert = false
     }

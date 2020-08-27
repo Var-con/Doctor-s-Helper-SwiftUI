@@ -10,20 +10,16 @@ import SwiftUI
 
 struct StorageListView: View {
 
-    @ObservedObject private var lists = ListsOfUnworking()
+    @ObservedObject private var fetchingListsManager = ListsOfUnworking()
     @State var listsForTable: [ListOfUnworking] = []
     
     var body: some View {
             List (listsForTable, id: \.listNumber) { list in
                 RowList(list: list)
-                if self.listsForTable.isEmpty {
-                    Text("Вы еще не добавляли своих больничных листов.")
                 }
-                }
-    
             .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
                 .onAppear {
-                    self.listsForTable = self.lists.fetchListWithoutPrevioslyNumber()
+                    self.listsForTable = self.fetchingListsManager.fetchListWithoutPrevioslyNumber()
         }
             .listStyle(GroupedListStyle())
         }

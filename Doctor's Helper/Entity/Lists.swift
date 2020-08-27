@@ -21,6 +21,12 @@ class ListsOfUnworking: ObservableObject {
            return list
        }
     
+    func fetchListWithPrevioslyNumberByNumber(_ list: ListOfUnworking) -> [ListOfUnworking] {
+        let lists = StorageManager.shared.fetchLists().filter { $0.previoslyListNumber != nil }
+        let sortedList = lists.filter { $0.previoslyListNumber == list.listNumber }
+        return sortedList
+    }
+    
     func fetchLists() -> [ListOfUnworking] {
         let list = StorageManager.shared.fetchLists()
         return list

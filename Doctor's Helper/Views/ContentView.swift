@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct ContentView: View {
-
-
     var body: some View {
         NavigationView {
             ZStack {
@@ -20,12 +18,12 @@ struct ContentView: View {
                                      endAngle: .degrees(100))
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    Image("1024 (1)")
+                    Image("Image")
                         .resizable()
-                        .frame(width: 250, height: 250)
+                        .frame(width: 200, height: 200)
                         .opacity(0.6)
                     Spacer()
-                    NavigationLink(destination: CalculatingView( exitToPreviousPage: false)) {
+                    NavigationLink(destination: CalculatingView()) {
                         Text("Рассчитать больничный лист")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -43,7 +41,6 @@ struct ContentView: View {
                     Spacer()
                 }
                 .navigationBarTitle("Doctor's Helper")
-                
             }
         }
 
