@@ -30,6 +30,7 @@
 		B3D1653124F06B7600CBB886 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D1653024F06B7600CBB886 /* CustomModifiers.swift */; };
 		B3E2DE3524EE9465007B11E1 /* RowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3424EE9465007B11E1 /* RowList.swift */; };
 		B3E2DE3724EEB551007B11E1 /* DeatailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */; };
+		B3EFF8CC24FCB87200589626 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EFF8CB24FCB87200589626 /* Keyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		B3D1653024F06B7600CBB886 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		B3E2DE3424EE9465007B11E1 /* RowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowList.swift; sourceTree = "<group>"; };
 		B3E2DE3624EEB551007B11E1 /* DeatailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatailInfoView.swift; sourceTree = "<group>"; };
+		B3EFF8CB24FCB87200589626 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				B3AFB24124E2D2A50000B566 /* SceneDelegate.swift */,
 				B3AFB24524E2D2AD0000B566 /* Assets.xcassets */,
 				B3AFB24A24E2D2AD0000B566 /* LaunchScreen.storyboard */,
+				B3EFF8CB24FCB87200589626 /* Keyboard.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				B3AFB25A24E31CB70000B566 /* ListModel.swift in Sources */,
 				B310110924EE728F00186136 /* Lists.swift in Sources */,
 				B3AFB25F24E328600000B566 /* StorageService.swift in Sources */,
+				B3EFF8CC24FCB87200589626 /* Keyboard.swift in Sources */,
 				B3AFB25824E31C900000B566 /* StorageListView.swift in Sources */,
 				B3AFB25624E2E8C40000B566 /* CalendarView.swift in Sources */,
 				B3083FAC24F17B41007A2DE9 /* ContinueWithStringCalculate.swift in Sources */,
@@ -412,7 +416,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "No.Doctor-s-Helper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -432,7 +436,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "No.Doctor-s-Helper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

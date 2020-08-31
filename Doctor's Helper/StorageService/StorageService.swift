@@ -97,3 +97,35 @@ extension StorageManager {
          userDefaults.setValue(data, forKeyPath: arrayKey)
      }
 }
+
+
+extension StorageManager {
+    
+    func deleteListFromStorage(list: ListOfUnworking) {
+        let listsOfUnworkingStored = ListsOfUnworking()
+
+        var listsArray = listsOfUnworkingStored.fetchLists()
+    
+        for (index, listOfUnwork) in listsArray.enumerated() {
+            if listOfUnwork.listNumber == list.listNumber,
+                index < listsArray.count {
+                listsArray.remove(at: index)
+                StorageManager.shared.deleteListInListsOfStrings(with: listOfUnwork.listNumber)
+            }
+        }
+            for (index, listOfUnwork) in listsArray.enumerated() {
+                if listOfUnwork.previoslyListNumber ?? "" == list.listNumber, index < listsArray.count {
+                listsArray.remove(at: index)
+                StorageManager.shared.deleteListInListsOfStrings(with: listOfUnwork.listNumber)
+                }
+        }
+        
+        for (index, listOfUnwork) in listsArray.enumerated() {
+                if listOfUnwork.previoslyListNumber ?? "" == list.listNumber, index < listsArray.count {
+                listsArray.remove(at: index)
+                StorageManager.shared.deleteListInListsOfStrings(with: listOfUnwork.listNumber)
+                }
+        }
+        StorageManager.shared.saveArrayOfLists(with: listsArray)
+    }
+}

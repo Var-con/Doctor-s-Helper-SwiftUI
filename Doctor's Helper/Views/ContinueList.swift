@@ -19,10 +19,14 @@ struct ContinueList: View {
     @State private var showAlert = false
     @State var resultText: String
     @Binding var storedContinueLists: [ListOfUnworking]
+    @ObservedObject private var keyboard = KeyboardResponder()
     
     var body: some View {
         ZStack {
             AngularGradient.init(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.7500734925, green: 1, blue: 0.9300767779, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]), center: .bottomTrailing, startAngle: .zero, endAngle: .degrees(100))
+                .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+            }
             VStack {
                 VStack {
                     VStack {
@@ -59,6 +63,7 @@ struct ContinueList: View {
                 .modifier(CommonRejectButton())
                 .padding(.top, 15)
             }
+            .padding(.bottom, keyboard.currentHeight)
         }
     }
 }

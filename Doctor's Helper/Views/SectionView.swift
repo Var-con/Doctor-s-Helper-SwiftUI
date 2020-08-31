@@ -83,7 +83,11 @@ struct SectionView: View {
             .alert(isPresented: self.$showAskingOfDeleteAlert) {
                 Alert(title: Text("Вы точно хотите удалить л/н?"),
                       primaryButton: Alert.Button.destructive(Text("Да"), action: {
-                        self.deleteList(list: self.list)
+                        StorageManager.shared.deleteListFromStorage(list: self.list)
+                        if self.list.listNumber == self.firstList.listNumber {
+                            self.isActive.toggle()
+                        }
+                        self.storedContinueLists = self.listsOfUnworkingStored.fetchLists()
                       }),
                       secondaryButton: Alert.Button.cancel())
             }
@@ -135,35 +139,4 @@ struct SectionView: View {
             self.storedStrings = self.listsOfUnworkingStored.fetchContinueStrings(with: self.list.listNumber)
         }
     }
-}
-
-
-extension SectionView {
-    func deleteList(list: ListOfUnworking) {
-        var listsArray = listsOfUnworkingStored.fetchLists()
-        for (index, listOfUnwork) in listsArray.enumerated() {
-            if let previosListNumber = listOfUnwork.previoslyListNumber {
-                if previosListNumber == list.listNumber,
-                    index < listsArray.count {
-                    listsArray.remove(at: index)
-                    appDelegate?.notificationCenter.removePendingNotificationRequests(withIdentifiers: ["Local Notification \(listOfUnwork.listNumber)"])
-                }
-            }
-            for (index, listOfUnwork) in listsArray.enumerated() {
-                if listOfUnwork.listNumber == list.listNumber,
-                    index < listsArray.count {
-                    listsArray.remove(at: index)
-                    appDelegate?.notificationCenter.removePendingNotificationRequests(withIdentifiers: ["Local Notification \(list.listNumber)"])
-                    StorageManager.shared.deleteListInListsOfStrings(with: listOfUnwork.listNumber)
-                }
-            }
-        }
-        StorageManager.shared.deleteListInListsOfStrings(with: list.listNumber)
-        StorageManager.shared.saveArrayOfLists(with: listsArray)
-        if self.firstList.listNumber == list.listNumber {
-            isActive.toggle()
-        }
-        self.storedContinueLists = self.listsOfUnworkingStored.fetchListWithPrevioslyNumber()
-    }
-    
 }

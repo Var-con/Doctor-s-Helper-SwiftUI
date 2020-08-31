@@ -16,6 +16,7 @@ struct CalculatingView: View {
     @State private var showTextField = false
     @State private var listNumber = ""
     @State private var savingAlert = false
+    @ObservedObject private var keyboard = KeyboardResponder()
     
     var body: some View {
         ZStack {
@@ -23,6 +24,10 @@ struct CalculatingView: View {
                                  center: .bottomTrailing,
                                  startAngle: .zero,
                                  endAngle: .degrees(100))
+                .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+            }
+            
             VStack {
                 Spacer()
                 VStack {
@@ -73,8 +78,9 @@ struct CalculatingView: View {
                     }.padding(.top, 10)
                     Spacer().frame(height: 20)
                 }
-                .animation(.default)
+                .animation(.linear(duration: 0.14))
             }
+            .padding(.bottom, keyboard.currentHeight)
             .navigationBarTitle("Рассчитайте больничный", displayMode: .inline)
         }
     }
