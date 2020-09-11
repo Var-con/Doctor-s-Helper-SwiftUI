@@ -23,14 +23,13 @@ struct SectionView: View {
     var body: some View {
         
         VStack {
-            if storedStrings.count == 2{
+            if storedStrings.count == 2 {
                 Text("Всего дней нетрудоспособности: \(list.totalDays + self.storedStrings[0].totalDays + self.storedStrings[1].totalDays)").fontWeight(.bold)
             } else if self.storedStrings.count == 1 {
                 Text("Всего дней нетрудоспособности: \(list.totalDays + self.storedStrings[0].totalDays)").fontWeight(.bold)
             } else {
                 Text("Всего дней нетрудоспособности: \(list.totalDays)").fontWeight(.bold)
             }
-            Spacer()
             VStack {
                 Text("Лист нетрудоспособности: № ")
                 Text("\(list.listNumber)")
@@ -83,7 +82,7 @@ struct SectionView: View {
             .alert(isPresented: self.$showAskingOfDeleteAlert) {
                 Alert(title: Text("Вы точно хотите удалить л/н?"),
                       primaryButton: Alert.Button.destructive(Text("Да"), action: {
-                        StorageManager.shared.deleteListFromStorage(list: self.list)
+                        StorageManager.shared.deleteList(list: self.list)
                         if self.list.listNumber == self.firstList.listNumber {
                             self.isActive.toggle()
                         }

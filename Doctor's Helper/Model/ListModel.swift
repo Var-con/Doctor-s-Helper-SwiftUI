@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct ListOfUnworking: Codable, Identifiable, Equatable {
-    var id: Int?
+struct ListOfUnworking: Codable, Identifiable, Equatable, Comparable {
+    static func < (lhs: ListOfUnworking, rhs: ListOfUnworking) -> Bool {
+        lhs.endDate < rhs.endDate
+    }
+    
+    var id: String
     var listNumber: String
     var totalDays: Int
     var startDate: Date

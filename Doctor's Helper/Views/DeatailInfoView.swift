@@ -27,9 +27,8 @@ struct DeatailInfoView: View {
                 SectionView(list: list, firstList: list, continueIsPresented: continueIsPresented, isActive: $returnToPreviousScreen, storedContinueLists: $storedContinueLists)
                 Spacer()
                 VStack {
-                    ForEach(self.storedContinueLists) { nextList in
-                        if nextList.previoslyListNumber == self.list.listNumber {
-                            Text("Лист продолжения:")
+                    ForEach(self.takeContinueLists()){ nextList in
+                                Text("Лист продолжения:")
                                 .font(.title)
                                 .fontWeight(.bold)
                             SectionView(list: nextList,
@@ -37,7 +36,6 @@ struct DeatailInfoView: View {
                                         continueIsPresented: self.continueIsPresented,
                                         isActive: self.$returnToPreviousScreen,
                                         storedContinueLists: self.$storedContinueLists)
-                        }
                     }
                 }
                 .animation(.default)
@@ -51,7 +49,8 @@ struct DeatailInfoView: View {
                                  showModal: self.$returnTiPreviousScreenFromCalculateScreen,
                                  date: self.list.endDate,
                                  resultText: "",
-                                 storedContinueLists: self.$storedContinueLists)
+                                 storedContinueLists: self.$storedContinueLists
+                    )
                 }
                     
                 .frame(width: 200, height: 70)
@@ -70,7 +69,7 @@ struct DeatailInfoView: View {
 }
 struct DeatailInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        DeatailInfoView(list: ListOfUnworking(id: 12,
+        DeatailInfoView(list: ListOfUnworking(id: "12",
                                               listNumber: "12",
                                               totalDays: 2,
                                               startDate: Date(),
@@ -79,3 +78,17 @@ struct DeatailInfoView_Previews: PreviewProvider {
     }
 }
 
+
+
+extension DeatailInfoView {
+    private func takeContinueLists() -> [ListOfUnworking] {
+        var arrayOfNextLists: [ListOfUnworking] = []
+        for nextList in self.storedContinueLists {
+            if nextList.previoslyListNumber == self.list.listNumber {
+                arrayOfNextLists.append(nextList)
+            }
+        }
+        print(arrayOfNextLists)
+        return arrayOfNextLists
+    }
+}

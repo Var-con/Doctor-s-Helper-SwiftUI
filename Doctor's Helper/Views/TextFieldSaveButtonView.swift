@@ -66,7 +66,9 @@ struct TextFieldSaveButtonView: View {
 
 struct TextFieldSaveButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false), storedContinueLists: .constant([]))
+        TextFieldSaveButtonView(startValue: .constant(Date.init()), endValue: .constant(Date.init()), exitToPreviousPage: .constant(false),
+                                storedContinueLists: .constant([])
+        )
     }
 }
 
@@ -97,7 +99,7 @@ extension TextFieldSaveButtonView {
                 
             }
         }
-        appDelegate?.scheduleNotification(with: list, and: list.endDate)
+        appDelegate?.scheduleNotification(with: list)
         self.savingAlert.toggle()
         StorageManager.shared.saveList(with: list)
         self.storedContinueLists = self.lists.fetchListWithPrevioslyNumber()

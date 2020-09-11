@@ -45,34 +45,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func scheduleNotification(with list: ListOfUnworking, and date: Date) {
+    func scheduleNotification(with list: ListOfUnworking) {
         
         let content = UNMutableNotificationContent()
         
         content.sound = UNNotificationSound.default
         content.badge = 1
         content.title = "Не забудьте продлить л/н №\(list.listNumber)"
-        var triggerDate = Calendar.current.dateComponents(in: .current, from: date)
+        var triggerDate = Calendar.current.dateComponents([.day, .calendar], from: list.endDate)
         triggerDate.hour = 10
         triggerDate.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        
         let identifier = "Local Notification \(list.listNumber)"
         let request = UNNotificationRequest(identifier: identifier,
                                             content: content,
                                             trigger: trigger)
-        
         notificationCenter.add(request) { (error) in
             if let error = error {
                 print("Error \(error.localizedDescription)")
             }
         }
     }
-    
 }
-
-
-
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
@@ -81,6 +75,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         completionHandler([.alert, .sound])
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        StorageManager.shared.saveContext()
     }
     
 }

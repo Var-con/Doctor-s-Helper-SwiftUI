@@ -11,15 +11,15 @@ import SwiftUI
 struct StorageListView: View {
 
     @ObservedObject private var fetchingListsManager = ListsOfUnworking()
-    @State var listsForTable: [ListOfUnworking] = []
+    @State var listsForTable: [ListOfUnworking]
     
     var body: some View {
-            List (listsForTable, id: \.listNumber) { list in
+        List (listsForTable) { list in
                 RowList(list: list)
                 }
             .navigationBarTitle("Ваши сохраненные больничные!", displayMode: .inline)
                 .onAppear {
-                    self.listsForTable = self.fetchingListsManager.fetchListWithoutPrevioslyNumber()
+                    self.listsForTable = (self.fetchingListsManager.fetchListWithoutPrevioslyNumber()).sorted()
         }
             .listStyle(GroupedListStyle())
         }
@@ -27,7 +27,7 @@ struct StorageListView: View {
     
     struct StorageListView_Previews: PreviewProvider {
         static var previews: some View {
-            StorageListView()
+            StorageListView(listsForTable: [])
             
         }
 }

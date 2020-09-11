@@ -79,13 +79,14 @@ struct ContinueWithStringCalculate: View {
 struct ContinueWithStringCalculate_Previews: PreviewProvider {
     static var previews: some View {
         ContinueWithStringCalculate(
-            list: ListOfUnworking(id: 12,
+            list: ListOfUnworking(id: "12",
                                   listNumber: "12",
                                   totalDays: 2,
                                   startDate: Date.init(),
                                   endDate: Date.init()),
             showModal: .constant(true),
-            date: Date.init(), storedString: .constant([]))
+            date: Date.init(),
+            storedString: .constant([]))
     }
 }
 
@@ -112,8 +113,9 @@ extension ContinueWithStringCalculate {
                                    endDate: endDate,
                                    numbeOfString: numberOfString,
                                    listNumber: list.listNumber)
-        
-        
+        var listToNotifications = list
+        listToNotifications.endDate = endDate
+        appDelegate?.scheduleNotification(with: listToNotifications)
         self.savingAlert.toggle()
         StorageManager.shared.saveContinueListString(with: listOfString)
         

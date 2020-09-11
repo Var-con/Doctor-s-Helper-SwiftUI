@@ -11,6 +11,7 @@
 		B3083FAA24F1784C007A2DE9 /* NumberOfContinueString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */; };
 		B3083FAC24F17B41007A2DE9 /* ContinueWithStringCalculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */; };
 		B310110924EE728F00186136 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310110824EE728F00186136 /* Lists.swift */; };
+		B32EC52924FF7A9F0082C680 /* Doctor'sHelper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B32EC52724FF7A9F0082C680 /* Doctor'sHelper.xcdatamodeld */; };
 		B33C8A3124F51B900095616E /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33C8A3024F51B900095616E /* SectionView.swift */; };
 		B3A8F62224ED41840010A9F5 /* ContinueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62124ED41840010A9F5 /* ContinueList.swift */; };
 		B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */; };
@@ -38,6 +39,7 @@
 		B3083FA924F1784C007A2DE9 /* NumberOfContinueString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfContinueString.swift; sourceTree = "<group>"; };
 		B3083FAB24F17B41007A2DE9 /* ContinueWithStringCalculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithStringCalculate.swift; sourceTree = "<group>"; };
 		B310110824EE728F00186136 /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
+		B32EC52824FF7A9F0082C680 /* coredata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coredata.xcdatamodel; sourceTree = "<group>"; };
 		B33C8A3024F51B900095616E /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		B3A8F62124ED41840010A9F5 /* ContinueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueList.swift; sourceTree = "<group>"; };
 		B3A8F62524ED52E10010A9F5 /* CalculatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatingService.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		B3AFB23E24E2D2A50000B566 /* Doctor's Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B32EC52724FF7A9F0082C680 /* Doctor'sHelper.xcdatamodeld */,
 				B3AFB26024E328670000B566 /* StorageService */,
 				B310110A24EE8BC000186136 /* Entity */,
 				B3AFB25B24E324160000B566 /* Views */,
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32EC52924FF7A9F0082C680 /* Doctor'sHelper.xcdatamodeld in Sources */,
 				B3A8F62624ED52E10010A9F5 /* CalculatingService.swift in Sources */,
 				B3CA2C0124EDA46800831A92 /* CalculateButtonView.swift in Sources */,
 				B3E2DE3724EEB551007B11E1 /* DeatailInfoView.swift in Sources */,
@@ -462,6 +466,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B32EC52724FF7A9F0082C680 /* Doctor'sHelper.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B32EC52824FF7A9F0082C680 /* coredata.xcdatamodel */,
+			);
+			currentVersion = B32EC52824FF7A9F0082C680 /* coredata.xcdatamodel */;
+			path = "Doctor'sHelper.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B3AFB23424E2D2A50000B566 /* Project object */;
 }

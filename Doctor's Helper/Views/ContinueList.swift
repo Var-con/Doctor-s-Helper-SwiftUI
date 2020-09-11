@@ -46,7 +46,8 @@ struct ContinueList: View {
                                             endValue: $endDate,
                                             list: list,
                                             exitToPreviousPage: $showModal,
-                                            storedContinueLists: $storedContinueLists)
+                                            storedContinueLists: $storedContinueLists
+                    )
                     
                 }
                 Text(resultText)
@@ -71,13 +72,15 @@ struct ContinueList: View {
 struct ContinueList_Previews: PreviewProvider {
     static var previews: some View {
         ContinueList(
-            list: ListOfUnworking(id: 12,
+            list: ListOfUnworking(id: "12",
                                   listNumber: "12",
                                   totalDays: 2,
                                   startDate: Date.init(),
                                   endDate: Date.init()),
             showModal: .constant(true),
-            date: Date.init(), resultText: "11111", storedContinueLists: .constant([]))
+            date: Date.init(), resultText: "11111",
+            storedContinueLists: .constant([])
+        )
     }
 }
 

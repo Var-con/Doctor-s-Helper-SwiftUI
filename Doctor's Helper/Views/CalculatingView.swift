@@ -50,7 +50,8 @@ struct CalculatingView: View {
                         startValue: $startDate,
                         endValue: $endDate,
                         exitToPreviousPage: .constant(false),
-                        storedContinueLists: .constant([]))
+                        storedContinueLists: .constant([])
+                    )
                 } else {
                     Spacer().frame(height: 34)
                 }

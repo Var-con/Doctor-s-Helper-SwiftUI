@@ -32,7 +32,7 @@ struct ContentView: View {
                     .frame(width: 270, height: 100)
                     .modifier(CommonBlueButtonModifier())
                     
-                    NavigationLink(destination: StorageListView()) {
+                    NavigationLink(destination: StorageListView(listsForTable: [])) {
                         Text("Сохраненные больничные листы")
                         Image(systemName: "folder")
                     }

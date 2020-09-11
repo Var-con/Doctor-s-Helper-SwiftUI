@@ -24,7 +24,7 @@ class CalculatingService {
     func savingToStorage(listNumber: String, startDate: Date, endDate: Date) -> ListOfUnworking {
         let totalDays = getDays(from: startDate, to: endDate)
         let listOfUnworking = ListOfUnworking(
-            id: Int(listNumber),
+            id: listNumber,
             listNumber: listNumber,
             totalDays: totalDays,
             startDate: startDate,

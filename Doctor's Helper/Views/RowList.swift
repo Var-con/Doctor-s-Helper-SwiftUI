@@ -95,7 +95,7 @@ struct RowList: View {
 
 struct RowList_Previews: PreviewProvider {
     static var previews: some View {
-        RowList(list: ListOfUnworking(id: 12,
+        RowList(list: ListOfUnworking(id: "12",
                                       listNumber: "12",
                                       totalDays: 1,
                                       startDate: Date(),
